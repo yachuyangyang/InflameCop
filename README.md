@@ -80,11 +80,28 @@ graph TD
     KR --> DB2
     BA --> DB3
 ```
+### Agent Specifications
+
+
 ## Diagram 2 - MCP
 
 
 ---
-# 4. The Build 🛠️ Tech Stack
+# 4. The Build 
+## 🛠️ Tech Stack
+## Installation
+## Usage
+## Development Process
 
 ---
-# 4. Architecture
+# n. Kaggle 5 Days Topics Coverage
+
+---
+# n. Next Steps
+
+---
+# n. Citation
+
+---
+# n. Q & A
+
