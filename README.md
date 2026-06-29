@@ -1,5 +1,5 @@
 # 1. Executive Summary
-
+## Core Concept & Value
 **InflameCop** is a multi-agent system that autonomously audits cellular inflammation risks from food photography by combining multi-modal perception with context-aware functional medicine reasoning.
 
 | Section | Description |
