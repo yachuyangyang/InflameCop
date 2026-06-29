@@ -1,4 +1,4 @@
-## 1. Executive Summary
+# 1. Executive Summary
 
 **InflameCop** is a multi-agent system that autonomously audits cellular inflammation risks from food photography by combining multi-modal perception with context-aware functional medicine reasoning.
 
@@ -12,7 +12,7 @@
 
 ---
 
-## 2. Problem Statement: The Hidden Cellular Fire
+# 2. Problem Statement: The Hidden Cellular Fire
 
 > **Urban professionals aren't just tired—their cells are on fire.** Modern meals are packed with hidden, highly inflammatory restaurant oils and toxic AGE surges, yet 100% of legacy trackers are completely blind to these molecular triggers, forcing users to count calories while leaving their cellular health unprotected.
 
