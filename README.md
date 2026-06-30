@@ -85,6 +85,895 @@ graph TD
 
 ## Diagram 2 - MCP
 
+```mermaid
+flowchart TD
+    %% Global Light-Themed Styling Config
+    classDef coordinator fill:#f3e8ff,stroke:#7c3aed,stroke-width:2px,color:#4c1d95,font-weight:bold;
+    classDef fallbackBox fill:#eff6ff,stroke:#3b82f6,stroke-width:1px,stroke-dasharray: 4 4,color:#1e40af,font-size:11px;
+    classDef skillGroup fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px,color:#1e293b,font-weight:bold;
+    classDef skill fill:#ffffff,stroke:#64748b,stroke-width:1px,color:#334155,font-size:11px;
+    classDef db fill:#f0fdf4,stroke:#16a34a,stroke-width:1.5px,color:#14532d;
+    classDef output fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#92400e,font-weight:bold;
+
+    %% --- USER INPUT TRIGGER ---
+    Input([👤 User Uploads Meal Image + User Tags]) --> Coordinator
+
+    %% ==========================================
+    %% 1. ORCHESTRATION LAYER (Centered & Clean)
+    %% ==========================================
+    Coordinator["🧠 Context Router /<br/>Coordinator Agent"]:::coordinator
+    
+    FallbackBox["🔄 Resilient Fallback Chain:<br/>1. Primary: Gemini-3.5-Flash<br/>2. Gemini-Flash-Latest<br/>3. Gemini-3.1-Flash-Lite<br/>4. Gemini-2.5-Flash<br/>5. Deep Reasoning: Gemini-2.5-Pro"]:::fallbackBox
+
+    %% Push fallback cleanly to the right
+    Coordinator -.-> FallbackBox
+
+    %% ==========================================
+    %% 2. SPECIALIST SKILLS LAYER (Compressed Vertical Space)
+    %% ==========================================
+    %% Using compact arrows to tell the engine to bring the layers closer together
+    Coordinator --> GroupA
+    Coordinator --> GroupB
+    Coordinator --> GroupC
+    Coordinator --> GroupD
+
+    subgraph SpecialistSkillsLayer ["2. SPECIALIST SKILLS LAYER (Activated on Demand)"]
+        direction LR
+
+        %% Sub-group A: Core Defense & Parsing
+        subgraph GroupA ["A. Core Defense & Parsing"]
+            direction TB
+            S1["🔍 Skill 1: Image Content Guard<br>(Is Food Valid?)"]:::skill
+            S2["🍳 Skill 2: Home-Cooked vs Restaurant<br>Classifier"]:::skill
+            S3["🛡️ Skill 3: Witty Cop-Verdict Engine<br>(Police Verdict & 1 Action Item)"]:::skill
+            S1 ~~~ S2 ~~~ S3
+        end
+
+        %% Sub-group B: Nutritional & Toxicological
+        subgraph GroupB ["B. Nutrition & Toxicology"]
+            direction TB
+            S4["🌿 Skill 4: Micronutrient &<br>Antioxidant Estimator"]:::skill
+            S5["🔥 Skill 5: Advanced Glycation End-Products<br>(AGEs) Detector"]:::skill
+            S6["🫒 Skill 6: Lipid Peroxidation &<br>Seed Oil Hazard Analyst"]:::skill
+            S4 ~~~ S5 ~~~ S6
+        end
+
+        %% Sub-group C: Physiological Alignment
+        subgraph GroupC ["C. Physiological Alignment"]
+            direction TB
+            S7["🧘 Skill 7: Gut Mucosal Shield<br>(Neba-Neba Mucilage Hero Score)"]:::skill
+            S8["🍱 Skill 8: User Traits Contextualizer<br>(Leftovers, Deep Fried, Polyphenols)"]:::skill
+            S9["💪 Skill 9: Biometric Overlay Adjuster<br>(Sleep Deprived, Workout, Gut, Stress)"]:::skill
+            S7 ~~~ S8 ~~~ S9
+        end
+
+        %% Sub-group D: Trend & Synthesis
+        subgraph GroupD ["D. Trend & Synthesis"]
+            direction TB
+            S10["📊 Skill 10: Forensic Insights Builder<br>(Scientific Explanations)"]:::skill
+            S11["✍️ Skill 11: Traditional Chinese<br>Native Polish Engine"]:::skill
+            S12["💾 Skill 12: MCP DB Connector<br>(Metabolic Scoring API)"]:::skill
+            S10 ~~~ S11 ~~~ S12
+        end
+    end
+    style SpecialistSkillsLayer fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px
+    style GroupA skillGroup
+    style GroupB skillGroup
+    style GroupC skillGroup
+    style GroupD skillGroup
+
+    %% ==========================================
+    %% 3. DATA & KNOWLEDGE LAYER (Bottom)
+    %% ==========================================
+    GroupA --> DataLayer
+    GroupB --> DataLayer
+    GroupC --> DataLayer
+    GroupD --> DataLayer
+
+    subgraph DataLayer ["3. DATA & KNOWLEDGE LAYER"]
+        direction LR
+        DB1[("🗄️ Mount Sinai AGE DB<br>(STATIC_INGREDIENTS)")]:::db
+        DB2[("📚 WHO Chronic Disease Index<br>(& Anti-Aging Literature)")]:::db
+        DB3[("💾 User History Log DB<br>(& Logged Meal History)")]:::db
+        DB1 ~~~ DB2 ~~~ DB3
+    end
+    style DataLayer fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px
+
+    %% Output
+    DataLayer --> FinalOutput([📋 Output: Dynamic Clinical Report & Witty Chinese Polish Output]):::output
+```
+```mermaid
+flowchart TD
+    %% Global Light-Themed Styling Config
+    classDef coordinator fill:#f3e8ff,stroke:#7c3aed,stroke-width:2px,color:#4c1d95,font-weight:bold;
+    classDef fallbackBox fill:#eff6ff,stroke:#3b82f6,stroke-width:1px,stroke-dasharray: 4 4,color:#1e40af,font-size:11px;
+    classDef skillGroup fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px,color:#1e293b,font-weight:bold;
+    classDef skill fill:#ffffff,stroke:#64748b,stroke-width:1px,color:#334155,font-size:11px;
+    classDef db fill:#f0fdf4,stroke:#16a34a,stroke-width:1.5px,color:#14532d;
+    classDef output fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#92400e,font-weight:bold;
+
+    %% --- USER INPUT TRIGGER ---
+    Input([👤 User Uploads Meal Image + User Tags]) --> Coordinator
+
+    %% ==========================================
+    %% 1. ORCHESTRATION LAYER (Super Compact)
+    %% ==========================================
+    Coordinator["🧠 Context Router /<br/>Coordinator Agent"]:::coordinator
+    
+    %% Use pure text formatting inside a single node to display the fallback chain concisely
+    FallbackBox["🔄 Resilient Fallback Chain:<br/>1. Primary: Gemini-3.5-Flash<br/>2. Gemini-Flash-Latest<br/>3. Gemini-3.1-Flash-Lite<br/>4. Gemini-2.5-Flash<br/>5. Deep Reasoning: Gemini-2.5-Pro"]:::fallbackBox
+
+    %% Push the fallback explanation box neatly to the right
+    Coordinator -.-> FallbackBox
+
+    %% ==========================================
+    %% 2. SPECIALIST SKILLS LAYER (Perfectly Centered Below)
+    %% ==========================================
+    Coordinator ===> GroupA
+    Coordinator ===> GroupB
+    Coordinator ===> GroupC
+    Coordinator ===> GroupD
+
+    subgraph SpecialistSkillsLayer ["2. SPECIALIST SKILLS LAYER (Activated on Demand)"]
+        direction LR
+
+        %% Sub-group A: Core Defense & Parsing
+        subgraph GroupA ["A. Core Defense & Parsing"]
+            direction TB
+            S1["🔍 Skill 1: Image Content Guard<br>(Is Food Valid?)"]:::skill
+            S2["🍳 Skill 2: Home-Cooked vs Restaurant<br>Classifier"]:::skill
+            S3["🛡️ Skill 3: Witty Cop-Verdict Engine<br>(Police Verdict & 1 Action Item)"]:::skill
+            S1 ~~~ S2 ~~~ S3
+        end
+
+        %% Sub-group B: Nutritional & Toxicological
+        subgraph GroupB ["B. Nutrition & Toxicology"]
+            direction TB
+            S4["🌿 Skill 4: Micronutrient &<br>Antioxidant Estimator"]:::skill
+            S5["🔥 Skill 5: Advanced Glycation End-Products<br>(AGEs) Detector"]:::skill
+            S6["🫒 Skill 6: Lipid Peroxidation &<br>Seed Oil Hazard Analyst"]:::skill
+            S4 ~~~ S5 ~~~ S6
+        end
+
+        %% Sub-group C: Physiological Alignment
+        subgraph GroupC ["C. Physiological Alignment"]
+            direction TB
+            S7["🧘 Skill 7: Gut Mucosal Shield<br>(Neba-Neba Mucilage Hero Score)"]:::skill
+            S8["🍱 Skill 8: User Traits Contextualizer<br>(Leftovers, Deep Fried, Polyphenols)"]:::skill
+            S9["💪 Skill 9: Biometric Overlay Adjuster<br>(Sleep Deprived, Workout, Gut, Stress)"]:::skill
+            S7 ~~~ S8 ~~~ S9
+        end
+
+        %% Sub-group D: Trend & Synthesis
+        subgraph GroupD ["D. Trend & Synthesis"]
+            direction TB
+            S10["📊 Skill 10: Forensic Insights Builder<br>(Scientific Explanations)"]:::skill
+            S11["✍️ Skill 11: Traditional Chinese<br>Native Polish Engine"]:::skill
+            S12["💾 Skill 12: MCP DB Connector<br>(Metabolic Scoring API)"]:::skill
+            S10 ~~~ S11 ~~~ S12
+        end
+    end
+    style SpecialistSkillsLayer fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px
+    style GroupA skillGroup
+    style GroupB skillGroup
+    style GroupC skillGroup
+    style GroupD skillGroup
+
+    %% ==========================================
+    %% 3. DATA & KNOWLEDGE LAYER (Bottom)
+    %% ==========================================
+    GroupA --> DataLayer
+    GroupB --> DataLayer
+    GroupC --> DataLayer
+    GroupD --> DataLayer
+
+    subgraph DataLayer ["3. DATA & KNOWLEDGE LAYER"]
+        direction LR
+        DB1[("🗄️ Mount Sinai AGE DB<br>(STATIC_INGREDIENTS)")]:::db
+        DB2[("📚 WHO Chronic Disease Index<br>(& Anti-Aging Literature)")]:::db
+        DB3[("💾 User History Log DB<br>(& Logged Meal History)")]:::db
+        DB1 ~~~ DB2 ~~~ DB3
+    end
+    style DataLayer fill:#f8fafc,cbd5e1,stroke-width:1.5px
+
+    %% Output
+    DataLayer --> FinalOutput([📋 Output: Dynamic Clinical Report & Witty Chinese Polish Output]):::output
+
+```
+
+
+
+```mermaid
+flowchart TD
+    %% Global Light-Themed Styling Config
+    classDef coordinator fill:#f3e8ff,stroke:#7c3aed,stroke-width:2px,color:#4c1d95,font-weight:bold;
+    classDef fallback fill:#eff6ff,stroke:#3b82f6,stroke-width:1.5px,stroke-dasharray: 4 4,color:#1e40af;
+    classDef fallbackNode fill:#3b82f6,stroke:none,color:#ffffff,font-size:11px;
+    classDef skillGroup fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px,color:#1e293b,font-weight:bold;
+    classDef skill fill:#ffffff,stroke:#64748b,stroke-width:1px,color:#334155,font-size:11px;
+    classDef db fill:#f0fdf4,stroke:#16a34a,stroke-width:1.5px,color:#14532d;
+    classDef output fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#92400e,font-weight:bold;
+
+    %% --- USER INPUT TRIGGER ---
+    Input([👤 User Uploads Meal Image + User Tags]) --> Coordinator
+
+    %% ==========================================
+    %% 1. ORCHESTRATION & FALLBACK MATRIX (Top)
+    %% ==========================================
+    Coordinator["🧠 Context Router /<br/>Coordinator Agent"]:::coordinator
+    
+    subgraph FallbackPool ["Resilient Model Fallback Pool<br>(Low Latency Matrix)"]
+        direction TB
+        M1["Primary: Gemini-3.5-Flash"]:::fallbackNode -->|Fallback 1| M2["Gemini-Flash-Latest"]:::fallbackNode
+        M2 -->|Fallback 2| M3["Gemini-3.1-Flash-Lite"]:::fallbackNode
+        M3 -->|Fallback 3| M4["Gemini-2.5-Flash"]:::fallbackNode
+        M4 -->|Fallback 4| M5["Deep Reasoning: Gemini-2.5-Pro"]:::fallbackNode
+    end
+    style FallbackPool fallback
+
+    %% Hard Constraint: Force FallbackPool to stay strictly on the RIGHT of the Coordinator
+    Coordinator -.-> FallbackPool
+
+    %% ==========================================
+    %% 2. SPECIALIST SKILLS LAYER (Middle)
+    %% ==========================================
+    %% Strong vertical anchoring to pull the skills layer directly under the Coordinator
+    Coordinator ===> GroupA
+    Coordinator ===> GroupB
+    Coordinator ===> GroupC
+    Coordinator ===> GroupD
+
+    subgraph SpecialistSkillsLayer ["2. SPECIALIST SKILLS LAYER (Activated on Demand)"]
+        direction LR
+
+        %% Sub-group A: Core Defense & Parsing
+        subgraph GroupA ["A. Core Defense & Parsing"]
+            direction TB
+            S1["🔍 Skill 1: Image Content Guard<br>(Is Food Valid?)"]:::skill
+            S2["🍳 Skill 2: Home-Cooked vs Restaurant<br>Classifier"]:::skill
+            S3["🛡️ Skill 3: Witty Cop-Verdict Engine<br>(Police Verdict & 1 Action Item)"]:::skill
+            S1 ~~~ S2 ~~~ S3
+        end
+
+        %% Sub-group B: Nutritional & Toxicological
+        subgraph GroupB ["B. Nutrition & Toxicology"]
+            direction TB
+            S4["🌿 Skill 4: Micronutrient &<br>Antioxidant Estimator"]:::skill
+            S5["🔥 Skill 5: Advanced Glycation End-Products<br>(AGEs) Detector"]:::skill
+            S6["🫒 Skill 6: Lipid Peroxidation &<br>Seed Oil Hazard Analyst"]:::skill
+            S4 ~~~ S5 ~~~ S6
+        end
+
+        %% Sub-group C: Physiological Alignment
+        subgraph GroupC ["C. Physiological Alignment"]
+            direction TB
+            S7["🧘 Skill 7: Gut Mucosal Shield<br>(Neba-Neba Mucilage Hero Score)"]:::skill
+            S8["🍱 Skill 8: User Traits Contextualizer<br>(Leftovers, Deep Fried, Polyphenols)"]:::skill
+            S9["💪 Skill 9: Biometric Overlay Adjuster<br>(Sleep Deprived, Workout, Gut, Stress)"]:::skill
+            S7 ~~~ S8 ~~~ S9
+        end
+
+        %% Sub-group D: Trend & Synthesis
+        subgraph GroupD ["D. Trend & Synthesis"]
+            direction TB
+            S10["📊 Skill 10: Forensic Insights Builder<br>(Scientific Explanations)"]:::skill
+            S11["✍️ Skill 11: Traditional Chinese<br>Native Polish Engine"]:::skill
+            S12["💾 Skill 12: MCP DB Connector<br>(Metabolic Scoring API)"]:::skill
+            S10 ~~~ S11 ~~~ S12
+        end
+    end
+    style SpecialistSkillsLayer fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px
+    style GroupA skillGroup
+    style GroupB skillGroup
+    style GroupC skillGroup
+    style GroupD skillGroup
+
+    %% ==========================================
+    %% 3. DATA & KNOWLEDGE LAYER (Bottom)
+    %% ==========================================
+    GroupA --> DataLayer
+    GroupB --> DataLayer
+    GroupC --> DataLayer
+    GroupD --> DataLayer
+
+    subgraph DataLayer ["3. DATA & KNOWLEDGE LAYER"]
+        direction LR
+        DB1[("🗄️ Mount Sinai AGE DB<br>(STATIC_INGREDIENTS)")]:::db
+        DB2[("📚 WHO Chronic Disease Index<br>(& Anti-Aging Literature)")]:::db
+        DB3[("💾 User History Log DB<br>(& Logged Meal History)")]:::db
+        DB1 ~~~ DB2 ~~~ DB3
+    end
+    style DataLayer fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px
+
+    %% Output
+    DataLayer --> FinalOutput([📋 Output: Dynamic Clinical Report & Witty Chinese Polish Output]):::output
+```
+
+```mermaid
+flowchart TD
+    %% Global Light-Themed Styling Config
+    classDef coordinator fill:#f3e8ff,stroke:#7c3aed,stroke-width:2px,color:#4c1d95,font-weight:bold;
+    classDef fallback fill:#eff6ff,stroke:#3b82f6,stroke-width:1.5px,stroke-dasharray: 4 4,color:#1e40af;
+    classDef fallbackNode fill:#3b82f6,stroke:none,color:#ffffff,font-size:11px;
+    classDef skillGroup fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px,color:#1e293b,font-weight:bold;
+    classDef skill fill:#ffffff,stroke:#64748b,stroke-width:1px,color:#334155,font-size:11px;
+    classDef db fill:#f0fdf4,stroke:#16a34a,stroke-width:1.5px,color:#14532d;
+    classDef output fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#92400e,font-weight:bold;
+
+    %% --- USER INPUT TRIGGER ---
+    Input([👤 User Uploads Meal Image + User Tags]) --> Coordinator
+
+    %% ==========================================
+    %% 1. ORCHESTRATION LAYER (Top & Centered)
+    %% ==========================================
+    Coordinator["🧠 Context Router /<br/>Coordinator Agent"]:::coordinator
+    
+    subgraph FallbackPool ["Resilient Model Fallback Pool (Low Latency Matrix)"]
+        direction LR
+        M1["Primary: Gemini-3.5-Flash"]:::fallbackNode -->|Fallback 1| M2["Gemini-Flash-Latest"]:::fallbackNode -->|Fallback 2| M3["Gemini-3.1-Flash-Lite"]:::fallbackNode -->|Fallback 3| M4["Gemini-2.5-Flash"]:::fallbackNode -->|Fallback 4| M5["Deep Reasoning: Gemini-2.5-Pro"]:::fallbackNode
+    end
+    style FallbackPool fallback
+
+    %% Force FallbackPool to stay strictly on the RIGHT of the Coordinator
+    Coordinator -.-> FallbackPool
+
+    %% ==========================================
+    %% 2. SPECIALIST SKILLS LAYER (Perfectly Underneath)
+    %% ==========================================
+    %% Strong vertical anchoring to pull the skills layer directly under the Coordinator
+    Coordinator ===> GroupA
+    Coordinator ===> GroupB
+    Coordinator ===> GroupC
+    Coordinator ===> GroupD
+
+    subgraph SpecialistSkillsLayer ["2. SPECIALIST SKILLS LAYER (Activated on Demand)"]
+        direction LR
+
+        %% Sub-group A: Core Defense & Parsing
+        subgraph GroupA ["A. Core Defense & Parsing"]
+            direction TB
+            S1["🔍 Skill 1: Image Content Guard<br>(Is Food Valid?)"]:::skill
+            S2["🍳 Skill 2: Home-Cooked vs Restaurant<br>Classifier"]:::skill
+            S3["🛡️ Skill 3: Witty Cop-Verdict Engine<br>(Police Verdict & 1 Action Item)"]:::skill
+            S1 ~~~ S2 ~~~ S3
+        end
+
+        %% Sub-group B: Nutritional & Toxicological
+        subgraph GroupB ["B. Nutrition & Toxicology"]
+            direction TB
+            S4["🌿 Skill 4: Micronutrient &<br>Antioxidant Estimator"]:::skill
+            S5["🔥 Skill 5: Advanced Glycation End-Products<br>(AGEs) Detector"]:::skill
+            S6["🫒 Skill 6: Lipid Peroxidation &<br>Seed Oil Hazard Analyst"]:::skill
+            S4 ~~~ S5 ~~~ S6
+        end
+
+        %% Sub-group C: Physiological Alignment
+        subgraph GroupC ["C. Physiological Alignment"]
+            direction TB
+            S7["🧘 Skill 7: Gut Mucosal Shield<br>(Neba-Neba Mucilage Hero Score)"]:::skill
+            S8["🍱 Skill 8: User Traits Contextualizer<br>(Leftovers, Deep Fried, Polyphenols)"]:::skill
+            S9["💪 Skill 9: Biometric Overlay Adjuster<br>(Sleep Deprived, Workout, Gut, Stress)"]:::skill
+            S7 ~~~ S8 ~~~ S9
+        end
+
+        %% Sub-group D: Trend & Synthesis
+        subgraph GroupD ["D. Trend & Synthesis"]
+            direction TB
+            S10["📊 Skill 10: Forensic Insights Builder<br>(Scientific Explanations)"]:::skill
+            S11["✍️ Skill 11: Traditional Chinese<br>Native Polish Engine"]:::skill
+            S12["💾 Skill 12: MCP DB Connector<br>(Metabolic Scoring API)"]:::skill
+            S10 ~~~ S11 ~~~ S12
+        end
+    end
+    style SpecialistSkillsLayer fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px
+    style GroupA skillGroup
+    style GroupB skillGroup
+    style GroupC skillGroup
+    style GroupD skillGroup
+
+    %% ==========================================
+    %% 3. DATA & KNOWLEDGE LAYER (Bottom)
+    %% ==========================================
+    GroupA --> DataLayer
+    GroupB --> DataLayer
+    GroupC --> DataLayer
+    GroupD --> DataLayer
+
+    subgraph DataLayer ["3. DATA & KNOWLEDGE LAYER"]
+        direction LR
+        DB1[("🗄️ Mount Sinai AGE DB<br>(STATIC_INGREDIENTS)")]:::db
+        DB2[("📚 WHO Chronic Disease Index<br>(& Anti-Aging Literature)")]:::db
+        DB3[("💾 User History Log DB<br>(& Logged Meal History)")]:::db
+        DB1 ~~~ DB2 ~~~ DB3
+    end
+    style DataLayer fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px
+
+    %% Output
+    DataLayer --> FinalOutput([📋 Output: Dynamic Clinical Report & Witty Chinese Polish Output]):::output
+
+```
+
+```mermaid
+flowchart TD
+    %% Global Light-Themed Styling Config
+    classDef coordinator fill:#f3e8ff,stroke:#7c3aed,stroke-width:2px,color:#4c1d95,font-weight:bold;
+    classDef fallback fill:#eff6ff,stroke:#3b82f6,stroke-width:1.5px,stroke-dasharray: 4 4,color:#1e40af;
+    classDef fallbackNode fill:#3b82f6,stroke:none,color:#ffffff,font-size:11px;
+    classDef skillGroup fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px,color:#1e293b,font-weight:bold;
+    classDef skill fill:#ffffff,stroke:#64748b,stroke-width:1px,color:#334155,font-size:11px;
+    classDef db fill:#f0fdf4,stroke:#16a34a,stroke-width:1.5px,color:#14532d;
+    classDef output fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#92400e,font-weight:bold;
+
+    %% --- USER INPUT TRIGGER ---
+    Input([👤 User Uploads Meal Image + User Tags]) --> Coordinator
+
+    %% ==========================================
+    %% 1. ORCHESTRATION LAYER (Centered Top, Fallback on the Right)
+    %% ==========================================
+    subgraph OrchestrationLayer ["1. ORCHESTRATION LAYER"]
+        direction LR
+        
+        Coordinator["🧠 Context Router /<br/>Coordinator Agent"]:::coordinator
+        
+        subgraph FallbackPool ["Resilient Model Fallback Pool (Low Latency Matrix)"]
+            direction LR
+            M1["Primary: Gemini-3.5-Flash"]:::fallbackNode -->|Fallback 1| M2["Gemini-Flash-Latest"]:::fallbackNode -->|Fallback 2| M3["Gemini-3.1-Flash-Lite"]:::fallbackNode -->|Fallback 3| M4["Gemini-2.5-Flash"]:::fallbackNode -->|Fallback 4| M5["Deep Reasoning: Gemini-2.5-Pro"]:::fallbackNode
+        end
+        style FallbackPool fallback
+    end
+    style OrchestrationLayer fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px
+    
+    Coordinator -.-> FallbackPool
+
+    %% ==========================================
+    %% 2. SPECIALIST SKILLS LAYER (Middle)
+    %% ==========================================
+    %% Explicitly linking Coordinator down to Skills to break the side-by-side push
+    Coordinator --> GroupA
+    Coordinator --> GroupB
+    Coordinator --> GroupC
+    Coordinator --> GroupD
+
+    subgraph SpecialistSkillsLayer ["2. SPECIALIST SKILLS LAYER (Activated on Demand)"]
+        direction LR
+
+        %% Sub-group A: Core Defense & Parsing
+        subgraph GroupA ["A. Core Defense & Parsing"]
+            direction TB
+            S1["🔍 Skill 1: Image Content Guard<br>(Is Food Valid?)"]:::skill
+            S2["🍳 Skill 2: Home-Cooked vs Restaurant<br>Classifier"]:::skill
+            S3["🛡️ Skill 3: Witty Cop-Verdict Engine<br>(Police Verdict & 1 Action Item)"]:::skill
+            
+            %% Force absolute vertical alignment via invisible links
+            S1 ~~~ S2 ~~~ S3
+        end
+
+        %% Sub-group B: Nutritional & Toxicological
+        subgraph GroupB ["B. Nutrition & Toxicology"]
+            direction TB
+            S4["🌿 Skill 4: Micronutrient &<br>Antioxidant Estimator"]:::skill
+            S5["🔥 Skill 5: Advanced Glycation End-Products<br>(AGEs) Detector"]:::skill
+            S6["🫒 Skill 6: Lipid Peroxidation &<br>Seed Oil Hazard Analyst"]:::skill
+            
+            %% Force absolute vertical alignment via invisible links
+            S4 ~~~ S5 ~~~ S6
+        end
+
+        %% Sub-group C: Physiological Alignment
+        subgraph GroupC ["C. Physiological Alignment"]
+            direction TB
+            S7["🧘 Skill 7: Gut Mucosal Shield<br>(Neba-Neba Mucilage Hero Score)"]:::skill
+            S8["🍱 Skill 8: User Traits Contextualizer<br>(Leftovers, Deep Fried, Polyphenols)"]:::skill
+            S9["💪 Skill 9: Biometric Overlay Adjuster<br>(Sleep Deprived, Workout, Gut, Stress)"]:::skill
+            
+            %% Force absolute vertical alignment via invisible links
+            S7 ~~~ S8 ~~~ S9
+        end
+
+        %% Sub-group D: Trend & Synthesis
+        subgraph GroupD ["D. Trend & Synthesis"]
+            direction TB
+            S10["📊 Skill 10: Forensic Insights Builder<br>(Scientific Explanations)"]:::skill
+            S11["✍️ Skill 11: Traditional Chinese<br>Native Polish Engine"]:::skill
+            S12["💾 Skill 12: MCP DB Connector<br>(Metabolic Scoring API)"]:::skill
+            
+            %% Force absolute vertical alignment via invisible links
+            S10 ~~~ S11 ~~~ S12
+        end
+    end
+    style SpecialistSkillsLayer fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px
+    style GroupA skillGroup
+    style GroupB skillGroup
+    style GroupC skillGroup
+    style GroupD skillGroup
+
+    %% Connections from Skills to Data Layer
+    GroupA --> DataLayer
+    GroupB --> DataLayer
+    GroupC --> DataLayer
+    GroupD --> DataLayer
+
+    %% ==========================================
+    %% 3. DATA & KNOWLEDGE LAYER (Bottom)
+    %% ==========================================
+    subgraph DataLayer ["3. DATA & KNOWLEDGE LAYER"]
+        direction LR
+        DB1[("🗄️ Mount Sinai AGE DB<br>(STATIC_INGREDIENTS)")]:::db
+        DB2[("📚 WHO Chronic Disease Index<br>(& Anti-Aging Literature)")]:::db
+        DB3[("💾 User History Log DB<br>(& Logged Meal History)")]:::db
+        
+        %% Force absolute horizontal alignment (left to right) via invisible links
+        DB1 ~~~ DB2 ~~~ DB3
+    end
+    style DataLayer fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px
+
+    %% ==========================================
+    %% OUTPUT TRIGGER
+    %% ==========================================
+    DataLayer --> FinalOutput([📋 Output: Dynamic Clinical Report & Witty Chinese Polish Output]):::output
+```
+```mermaid
+flowchart TD
+    %% Global Light-Themed Styling Config
+    classDef coordinator fill:#f3e8ff,stroke:#7c3aed,stroke-width:2px,color:#4c1d95,font-weight:bold;
+    classDef fallback fill:#eff6ff,stroke:#3b82f6,stroke-width:1.5px,stroke-dasharray: 4 4,color:#1e40af;
+    classDef fallbackNode fill:#3b82f6,stroke:none,color:#ffffff,font-size:11px;
+    classDef skillGroup fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px,color:#1e293b,font-weight:bold;
+    classDef skill fill:#ffffff,stroke:#64748b,stroke-width:1px,color:#334155,font-size:11px;
+    classDef db fill:#f0fdf4,stroke:#16a34a,stroke-width:1.5px,color:#14532d;
+    classDef output fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#92400e,font-weight:bold;
+
+    %% --- USER INPUT TRIGGER ---
+    Input([👤 User Uploads Meal Image + User Tags]) --> Coordinator
+
+    %% ==========================================
+    %% 1. ORCHESTRATION LAYER (Top - Perfectly Centered)
+    %% ==========================================
+    subgraph OrchestrationLayer ["1. ORCHESTRATION LAYER"]
+        direction TB
+        
+        Coordinator["🧠 Context Router /<br/>Coordinator Agent"]:::coordinator
+        
+        subgraph FallbackPool ["Resilient Model Fallback Pool (Low Latency Matrix)"]
+            direction LR
+            M1["Primary: Gemini-3.5-Flash"]:::fallbackNode -->|Fallback 1| M2["Gemini-Flash-Latest"]:::fallbackNode -->|Fallback 2| M3["Gemini-3.1-Flash-Lite"]:::fallbackNode -->|Fallback 3| M4["Gemini-2.5-Flash"]:::fallbackNode -->|Fallback 4| M5["Deep Reasoning: Gemini-2.5-Pro"]:::fallbackNode
+        end
+        style FallbackPool fallback
+    end
+    style OrchestrationLayer fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px
+    
+    Coordinator -.-> FallbackPool
+
+    %% Connections from Orchestration directly down to Specialist Skills
+    Coordinator --> GroupA
+    Coordinator --> GroupB
+    Coordinator --> GroupC
+    Coordinator --> GroupD
+
+    %% ==========================================
+    %% 2. SPECIALIST SKILLS LAYER (Middle)
+    %% ==========================================
+    subgraph SpecialistSkillsLayer ["2. SPECIALIST SKILLS LAYER (Activated on Demand)"]
+        direction LR
+
+        %% Sub-group A: Core Defense & Parsing
+        subgraph GroupA ["A. Core Defense & Parsing"]
+            direction TB
+            S1["🔍 Skill 1: Image Content Guard<br>(Is Food Valid?)"]:::skill
+            S2["🍳 Skill 2: Home-Cooked vs Restaurant<br>Classifier"]:::skill
+            S3["🛡️ Skill 3: Witty Cop-Verdict Engine<br>(Police Verdict & 1 Action Item)"]:::skill
+            
+            %% Force absolute vertical alignment via invisible links
+            S1 ~~~ S2 ~~~ S3
+        end
+
+        %% Sub-group B: Nutritional & Toxicological
+        subgraph GroupB ["B. Nutrition & Toxicology"]
+            direction TB
+            S4["🌿 Skill 4: Micronutrient &<br>Antioxidant Estimator"]:::skill
+            S5["🔥 Skill 5: Advanced Glycation End-Products<br>(AGEs) Detector"]:::skill
+            S6["🫒 Skill 6: Lipid Peroxidation &<br>Seed Oil Hazard Analyst"]:::skill
+            
+            %% Force absolute vertical alignment via invisible links
+            S4 ~~~ S5 ~~~ S6
+        end
+
+        %% Sub-group C: Physiological Alignment
+        subgraph GroupC ["C. Physiological Alignment"]
+            direction TB
+            S7["🧘 Skill 7: Gut Mucosal Shield<br>(Neba-Neba Mucilage Hero Score)"]:::skill
+            S8["🍱 Skill 8: User Traits Contextualizer<br>(Leftovers, Deep Fried, Polyphenols)"]:::skill
+            S9["💪 Skill 9: Biometric Overlay Adjuster<br>(Sleep Deprived, Workout, Gut, Stress)"]:::skill
+            
+            %% Force absolute vertical alignment via invisible links
+            S7 ~~~ S8 ~~~ S9
+        end
+
+        %% Sub-group D: Trend & Synthesis
+        subgraph GroupD ["D. Trend & Synthesis"]
+            direction TB
+            S10["📊 Skill 10: Forensic Insights Builder<br>(Scientific Explanations)"]:::skill
+            S11["✍️ Skill 11: Traditional Chinese<br>Native Polish Engine"]:::skill
+            S12["💾 Skill 12: MCP DB Connector<br>(Metabolic Scoring API)"]:::skill
+            
+            %% Force absolute vertical alignment via invisible links
+            S10 ~~~ S11 ~~~ S12
+        end
+    end
+    style SpecialistSkillsLayer fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px
+    style GroupA skillGroup
+    style GroupB skillGroup
+    style GroupC skillGroup
+    style GroupD skillGroup
+
+    %% Connections from Skills to Data Layer
+    GroupA --> DataLayer
+    GroupB --> DataLayer
+    GroupC --> DataLayer
+    GroupD --> DataLayer
+
+    %% ==========================================
+    %% 3. DATA & KNOWLEDGE LAYER (Bottom)
+    %% ==========================================
+    subgraph DataLayer ["3. DATA & KNOWLEDGE LAYER"]
+        direction LR
+        DB1[("🗄️ Mount Sinai AGE DB<br>(STATIC_INGREDIENTS)")]:::db
+        DB2[("📚 WHO Chronic Disease Index<br>(& Anti-Aging Literature)")]:::db
+        DB3[("💾 User History Log DB<br>(& Logged Meal History)")]:::db
+        
+        %% Force absolute horizontal alignment (left to right) via invisible links
+        DB1 ~~~ DB2 ~~~ DB3
+    end
+    style DataLayer fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px
+
+    %% ==========================================
+    %% OUTPUT TRIGGER
+    %% ==========================================
+    DataLayer --> FinalOutput([📋 Output: Dynamic Clinical Report & Witty Chinese Polish Output]):::output
+```
+```mermaid
+```
+```mermaid
+```
+
+
+```mermaid
+flowchart TD
+    %% Global Light-Themed Styling Config
+    classDef coordinator fill:#f3e8ff,stroke:#7c3aed,stroke-width:2px,color:#4c1d95,font-weight:bold;
+    classDef fallback fill:#eff6ff,stroke:#3b82f6,stroke-width:1.5px,stroke-dasharray: 4 4,color:#1e40af;
+    classDef fallbackNode fill:#3b82f6,stroke:none,color:#ffffff,font-size:11px;
+    classDef skillGroup fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px,color:#1e293b,font-weight:bold;
+    classDef skill fill:#ffffff,stroke:#64748b,stroke-width:1px,color:#334155,font-size:11px;
+    classDef db fill:#f0fdf4,stroke:#16a34a,stroke-width:1.5px,color:#14532d;
+    classDef output fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#92400e,font-weight:bold;
+    classDef layerBox fill:#ffffff,stroke:#e2e8f0,stroke-width:2px,color:#0f172a,font-weight:bold;
+
+    %% --- USER INPUT TRIGGER ---
+    Input([👤 User Uploads Meal Image + User Tags]) --> Coordinator
+
+    %% ==========================================
+    %% 1. ORCHESTRATION LAYER (Top)
+    %% ==========================================
+    subgraph OrchestrationLayer ["1. ORCHESTRATION LAYER"]
+        direction LR
+        
+        Coordinator["🧠 Context Router /<br/>Coordinator Agent"]:::coordinator
+        
+        subgraph FallbackPool ["Resilient Model Fallback Pool (Low Latency Matrix)"]
+            direction TB
+            M1["Primary: Gemini-3.5-Flash"]:::fallbackNode -->|Fallback 1| M2["Gemini-Flash-Latest"]:::fallbackNode
+            M2 -->|Fallback 2| M3["Gemini-3.1-Flash-Lite"]:::fallbackNode
+            M3 -->|Fallback 3| M4["Gemini-2.5-Flash"]:::fallbackNode
+            M4 -->|Fallback 4| M5["Deep Reasoning: Gemini-2.5-Pro"]:::fallbackNode
+        end
+        style FallbackPool fallback
+    end
+    style OrchestrationLayer fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px
+    
+    Coordinator -.-> FallbackPool
+
+    %% Connections from Orchestration to Specialist Skills
+    Coordinator --> GroupA
+    Coordinator --> GroupB
+    Coordinator --> GroupC
+    Coordinator --> GroupD
+
+    %% ==========================================
+    %% 2. SPECIALIST SKILLS LAYER (Middle)
+    %% ==========================================
+    subgraph SpecialistSkillsLayer ["2. SPECIALIST SKILLS LAYER (Activated on Demand)"]
+        direction LR
+
+        %% Sub-group A: Core Defense & Parsing
+        subgraph GroupA ["A. Core Defense & Parsing"]
+            direction TB
+            S1["🔍 Skill 1: Image Content Guard<br>(Is Food Valid?)"]:::skill
+            S2["🍳 Skill 2: Home-Cooked vs Restaurant<br>Classifier"]:::skill
+            S3["🛡️ Skill 3: Witty Cop-Verdict Engine<br>(Police Verdict & 1 Action Item)"]:::skill
+        end
+
+        %% Sub-group B: Nutritional & Toxicological
+        subgraph GroupB ["B. Nutrition & Toxicology"]
+            direction TB
+            S4["🌿 Skill 4: Micronutrient &<br>Antioxidant Estimator"]:::skill
+            S5["🔥 Skill 5: Advanced Glycation End-Products<br>(AGEs) Detector"]:::skill
+            S6["🫒 Skill 6: Lipid Peroxidation &<br>Seed Oil Hazard Analyst"]:::skill
+        end
+
+        %% Sub-group C: Physiological Alignment
+        subgraph GroupC ["C. Physiological Alignment"]
+            direction TB
+            S7["🧘 Skill 7: Gut Mucosal Shield<br>(Neba-Neba Mucilage Hero Score)"]:::skill
+            S8["🍱 Skill 8: User Traits Contextualizer<br>(Leftovers, Deep Fried, Polyphenols)"]:::skill
+            S9["💪 Skill 9: Biometric Overlay Adjuster<br>(Sleep Deprived, Workout, Gut, Stress)"]:::skill
+        end
+
+        %% Sub-group D: Trend & Synthesis
+        subgraph GroupD ["D. Trend & Synthesis"]
+            direction TB
+            S10["📊 Skill 10: Forensic Insights Builder<br>(Scientific Explanations)"]:::skill
+            S11["✍️ Skill 11: Traditional Chinese<br>Native Polish Engine"]:::skill
+            S12["💾 Skill 12: MCP DB Connector<br>(Metabolic Scoring API)"]:::skill
+        end
+    end
+    style SpecialistSkillsLayer fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px
+    style GroupA skillGroup
+    style GroupB skillGroup
+    style GroupC skillGroup
+    style GroupD skillGroup
+
+    %% Connections from Skills to Data Layer
+    GroupA --> DataLayer
+    GroupB --> DataLayer
+    GroupC --> DataLayer
+    GroupD --> DataLayer
+
+    %% ==========================================
+    %% 3. DATA & KNOWLEDGE LAYER (Bottom)
+    %% ==========================================
+    subgraph DataLayer ["3. DATA & KNOWLEDGE LAYER"]
+        direction LR
+        DB1[("🗄️ Mount Sinai AGE DB<br>(STATIC_INGREDIENTS)")]:::db
+        DB2[("📚 WHO Chronic Disease Index<br>(& Anti-Aging Literature)")]:::db
+        DB3[("💾 User History Log DB<br>(& Logged Meal History)")]:::db
+    end
+    style DataLayer fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px
+
+    %% ==========================================
+    %% OUTPUT TRIGGER
+    %% ==========================================
+    DataLayer --> FinalOutput([📋 Output: Dynamic Clinical Report & Witty Chinese Polish Output]):::output
+```
+```mermaid
+flowchart TD
+    %% Global Styling Config
+    classDef layerTitle fill:#1e293b,stroke:#334155,stroke-width:2px,color:#f8fafc,font-weight:bold;
+    classDef coordinator fill:#0f172a,stroke:#3b82f6,stroke-width:2px,color:#f8fafc,font-weight:bold;
+    classDef fallback fill:#1e1b4b,stroke:#818cf8,stroke-dasharray: 5 5,color:#e0e7ff;
+    classDef skillGroup fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px,color:#1e293b,font-weight:bold;
+    classDef skill fill:#ffffff,stroke:#64748b,stroke-width:1px,color:#334155,font-size:11px;
+    classDef db fill:#f1f5f9,stroke:#94a3b8,stroke-width:1.5px,color:#1e293b;
+    classDef output fill:#22c55e,stroke:#15803d,stroke-width:2px,color:#ffffff,font-weight:bold;
+
+    %% --- USER INPUT TRIGGER ---
+    Input([User Uploads Meal Image + User Tags]) --> Coordinator
+
+    %% ==========================================
+    %% 1. ORCHESTRATION LAYER (Top)
+    %% ==========================================
+    subgraph OrchestrationLayer ["1. ORCHESTRATION LAYER"]
+        direction LR
+        
+        Coordinator["Context Router / Coordinator Agent"]
+        
+        subgraph FallbackPool ["Resilient Model Fallback Pool (Low Latency Matrix)"]
+            direction LR
+            M1["Gemini-3.5-Flash"] -->|Fallback 1| M2["Gemini-Flash-Latest"]
+            M2 -->|Fallback 2| M3["Gemini-3.1-Flash-Lite"]
+            M3 -->|Fallback 3| M4["Gemini-2.5-Flash"]
+            M4 -->|Fallback 4| M5["Gemini-2.5-Pro"]
+        end
+    end
+    
+    Coordinator <--> FallbackPool
+
+    %% Connections from Orchestration to Specialist Skills
+    Coordinator --> SpecialistSkillsLayer
+
+    %% ==========================================
+    %% 2. SPECIALIST SKILLS LAYER (Middle)
+    %% ==========================================
+    subgraph SpecialistSkillsLayer ["2. SPECIALIST SKILLS LAYER"]
+        direction TB
+
+        %% Sub-group A: Core Defense & Parsing
+        subgraph GroupA ["A. Core Defense & Parsing"]
+            direction TB
+            S1["Skill 1: Image Content Guard<br>(Is Food Valid?)"]
+            S2["Skill 2: Home-Cooked vs Restaurant<br>Classifier"]
+            S3["Skill 3: Witty Cop-Verdict Engine<br>(Police Verdict & 1 Action Item)"]
+        end
+
+        %% Sub-group B: Nutritional & Toxicological
+        subgraph GroupB ["B. Nutrition & Toxicology"]
+            direction TB
+            S4["Skill 4: Micronutrient &<br>Antioxidant Estimator"]
+            S5["Skill 5: Advanced Glycation End-Products<br>(AGEs) Detector"]
+            S6["Skill 6: Lipid Peroxidation &<br>Seed Oil Hazard Analyst"]
+        end
+
+        %% Sub-group C: Physiological Alignment
+        subgraph GroupC ["C. Physiological Alignment"]
+            direction TB
+            S7["Skill 7: Gut Mucosal Shield<br>(Neba-Neba Mucilage Hero Score)"]
+            S8["Skill 8: User Traits Contextualizer<br>(Leftovers, Deep Fried, Polyphenols)"]
+            S9["Skill 9: Biometric Overlay Adjuster<br>(Sleep Deprived, Workout, Gut, Stress)"]
+        end
+
+        %% Sub-group D: Trend & Synthesis
+        subgraph GroupD ["D. Trend & Synthesis"]
+            direction TB
+            S10["Skill 10: Forensic Insights Builder<br>(Scientific Explanations)"]
+            S11["Skill 11: Traditional Chinese<br>Native Polish Engine"]
+            S12["Skill 12: MCP DB Connector<br>(Metabolic Scoring API)"]
+        end
+    end
+
+    %% ==========================================
+    %% 3. DATA & KNOWLEDGE LAYER (Bottom)
+    %% ==========================================
+    SpecialistSkillsLayer --> DataLayer
+
+    subgraph DataLayer ["3. DATA & KNOWLEDGE LAYER"]
+        direction LR
+        DB1[("Local MCP DB<br>(STATIC_INGREDIENTS)")]
+        DB2[("WHO Guidelines / Medical<br>& Anti-Aging Literature")]
+        DB3[("User Context Profiles<br>& Logged Meal History")]
+    end
+
+    %% ==========================================
+    %% OUTPUT TRIGGER
+    %% ==========================================
+    DataLayer --> FinalOutput([Dynamic Clinical Report & Witty Chinese Polish Output])
+
+    %% Apply Styles
+    style OrchestrationLayer fill:#f8fafc,stroke:#334155,stroke-width:1.5px
+    style SpecialistSkillsLayer fill:#f8fafc,stroke:#334155,stroke-width:1.5px
+    style DataLayer fill:#f8fafc,stroke:#334155,stroke-width:1.5px
+    
+    style Coordinator coordinator
+    style FallbackPool fallback
+    style M1 fill:#4f46e5,color:#ffffff,stroke:none
+    style M2 fill:#4f46e5,color:#ffffff,stroke:none
+    style M3 fill:#4f46e5,color:#ffffff,stroke:none
+    style M4 fill:#4f46e5,color:#ffffff,stroke:none
+    style M5 fill:#4f46e5,color:#ffffff,stroke:none
+
+    style GroupA skillGroup
+    style GroupB skillGroup
+    style GroupC skillGroup
+    style GroupD skillGroup
+
+    style S1 skill
+    style S2 skill
+    style S3 skill
+    style S4 skill
+    style S5 skill
+    style S6 skill
+    style S7 skill
+    style S8 skill
+    style S9 skill
+    style S10 skill
+    style S11 skill
+    style S12 skill
+
+    style DB1 db
+    style DB2 db
+    style DB3 db
+    style FinalOutput output
+```
+```mermaid
 [ USER UPLOADS MEAL IMAGE + DECLARES TRAITS ]
                                        │
                                        ▼
@@ -128,7 +1017,7 @@ graph TD
                                        │
                                        ▼
                     [ POLISHED NATIVE USER REVEAL / VERDICT ]
-
+```
 ```mermaid
 graph TD
     %% User Inputs Layer %%
