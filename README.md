@@ -167,7 +167,7 @@ InflameCop implements a production-grade Agent Skills architecture designed to m
 #### Specialist Skills Registry
 By executing 12 highly codified clinical and biochemical skills as isolated semantic APIs, InflameCop dynamically loads prompt fragments and data structures on demand. This runtime orchestration architecture achieves up to a **98% reduction in active context windows** and strictly enforces **deterministic data boundaries** across all tool, database, and inference layers.
 
-<details open>
+<details >
 <summary><i>【Click to See Detailed Specialist Skills Spec】</i></summary>    
     
 ##### 🧱 Group A: Core Defense & Environmental Parsing
