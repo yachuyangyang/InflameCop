@@ -128,6 +128,74 @@ flowchart TD
 ## Agents/Skills Specification
 ### Orchestration Layer
 ### Secialist Skills Layer
+#### Agent Skills List
+🧱 Group A: Core Defense & Environmental Parsing
+- Skill 1 (Image Content Guard): Filters out non-food images at the gateway to prevent system pollution and conserve token budgets.
+- Skill 2 (Cook Classifier): Detects plating cues to differentiate home-cooked meals from hidden restaurant inflammatory oils.
+- Skill 3 (Witty Cop-Verdict Engine): Maps data into a gamified "Inflammation Police" verdict with exactly one witty, actionable mitigation.
+
+🧪 Group B: Nutrition & Biochemical Toxicology
+- Skill 4 (Micronutrient Estimator): Quantifies key vitamins and polyphenols to measure active cellular defense against oxidative stress.
+- Skill 5 (AGEs Detector): Multiplies glycotoxin scores based on cooking temperature (e.g., deep-fried vs. boiled) for anti-aging analysis.
+- Skill 6 (Seed Oil Hazard Analyst): Exposes hidden commercial refined seed oils and evaluates dangerous lipid peroxidation risks.
+
+🧘 Group C: Physiological & Biometric Alignment
+- Skill 7 (Gut Mucosal Shield): Scans for traditional "neba-neba" foods (natto, okra, yam) to grade intestinal barrier protection.
+- Skill 8 (User Traits Contextualizer): Cross-matches personalized history with food chemistry (e.g., flagging leftovers for histamine sensitivities).
+- Skill 9 (Biometric Adjuster): Uses a code constraint to automatically shrink the user's inflammatory budget during low sleep or high stress.
+
+📈 Group D: Long-Term Trend & Clinical Synthesis
+- Skill 10 (DII Engine): Executes a strict calculation script based on the peer-reviewed Dietary Inflammatory Index methodology.
+- Skill 11 (Historic Trend Analyzer): Triggers an MCP database call to track 7-day rolling averages, constructing a longitudinal data moat.
+- Skill 12 (Clinical Synthesizer): Aggregates multi-skill outputs via a File Message Bus, synthesizing findings with real medical citations.
+
+#### Agent Skills List
+## 🛠️ Dynamic Specialist Skills Registry
+
+InflameCop implements a production-grade Agent Skills architecture. Instead of a fragile monolithic prompt, the system utilizes **Progressive Disclosure** to dynamically load 12 codified skills on demand, reducing active context by 98% and strictly enforcing deterministic data boundaries.
+
+### 🧱 Group A: Core Defense & Environmental Parsing
+*Initial gatekeeping, input validation, and gamified UX rendering.*
+
+| Skill ID | API Contract (Schema) | Core Logic & Deterministic Tools | Value for Judges / Impact |
+| :--- | :--- | :--- | :--- |
+| **`SKILL_01_IMAGE_GUARD`** | **In:**<br/>`rawImageBase64`<br/><br/>**Out:**<br/>`{ isValidFood: bool, score: float }` | • Low-latency object detection (Gemini Vision).<br/>• **Guardrail:** Aborts DAG workflow if subject is non-edible or confidence < `0.70`. | **Extreme Robustness:** Prevents system pollution, API over-billing, and hallucinations right at the gateway. |
+| **`SKILL_02_COOK_CLASSIFIER`** | **In:**<br/>`{ ingredients, platingCues }`<br/><br/>**Out:**<br/>`{ context: enum, oilMultiplier: float }` | • Parses visual presentation cues (paper boxes, slate boards).<br/>• **Calibration:** Sets seed oil factor to `2.5x` for restaurants vs. `1.0x` for home. | **Context-Aware Precision:** Eliminates the "hidden restaurant oil" blindspot of standard diet apps. |
+| **`SKILL_03_COP_VERDICT`** | **In:**<br/>`{ diiScore, criticalHazards }`<br/><br/>**Out:**<br/>`{ verdictCategory: enum, actionItem }` | • Maps final DII score to police-style ratings.<br/>• Uses `/assets/cop_jokes.json` to deliver **exactly one** witty, biochemistry-backed advice. | **High UX Retention:** Translates dry medical markers into a viral, gamified narrative without cognitive overload. |
+
+---
+
+### 🧪 Group B: Nutrition & Biochemical Toxicology
+*Biochemical profiling and deep inflammatory defense mapping via MCP.*
+
+| Skill ID | API Contract (Schema) | Core Logic & Deterministic Tools | Value for Judges / Impact |
+| :--- | :--- | :--- | :--- |
+| **`SKILL_04_MICRONUTRIENT_EST`** | **In:**<br/>`{ ingredients: array }`<br/><br/>**Out:**<br/>`{ vitamins, polyphenols_mg }` | • Cross-references ingredients against **USDA FoodData Central API** and custom phytonutrient asset tables. | **Beyond Macros:** Tracks micronutrient buffers and cellular oxidative stress protectors instead of just calories. |
+| **`SKILL_05_AGE_DETECTOR`** | **In:**<br/>`{ ingredients, cookingMethod }`<br/><br/>**Out:**<br/>`{ ageScore, riskLevel: enum }` | • **Cooking Multiplier:** Boiled = `1.0x`, Deep-Fried = `10.0x`. <br/>• Clinical lookup table measuring glycotoxins (CML). | **True Longevity Science:** Shows how cooking methods dictate food toxicity, anchoring the app in anti-aging science. |
+| **`SKILL_06_SEED_OIL_ANALYST`** | **In:**<br/>`{ rawFoodText, locationContext }`<br/><br/>**Out:**<br/>`{ industrialOils: array, risk: enum }` | • Fuzzy string matching against restaurant menus.<br/>• Calculates lipid peroxidation risk via smoke point & PUFA content. | **Modern Diet Shield:** Directly exposes hidden industrial seed oils (canola, soybean) that typical apps ignore. |
+
+---
+
+### 🧘 Group C: Physiological & Biometric Alignment
+*Dynamic inflammatory threshold tuning based on real-time body state.*
+
+| Skill ID | API Contract (Schema) | Core Logic & Deterministic Tools | Value for Judges / Impact |
+| :--- | :--- | :--- | :--- |
+| **`SKILL_07_GUT_SHIELD`** | **In:**<br/>`{ ingredients: array }`<br/><br/>**Out:**<br/>`{ mucilageScore: int [0-100] }` | • Detects **"Neba-Neba"** foods (natto, okra, wild yam) and soluble prebiotic fibers.<br/>• Computes gut-lining barrier protection score. | **Holistic Gut Wellness:** Empirically rewards users for eating functional foods that heal the gut mucosa. |
+| **`SKILL_08_USER_TRAITS`** | **In:**<br/>`{ foodItems, userProfileTraits }`<br/><br/>**Out:**<br/>`{ personalizedWarnings: array }` | • Cross-matches lifestyle to food chemistry.<br/>• *Rule example:* Triggers histamine alert if user has sensitivities and food contains "leftovers". | **Hyper-Personalization:** Guarantees that the exact same meal yields completely different risks based on individual traits. |
+| **`SKILL_09_BIOMETRIC_ADJUSTER`** | **In:**<br/>`{ baselineDii, userBiometrics }`<br/><br/>**Out:**<br/>`{ adjustedDiiScore, shiftFactor }` | • **Shift Left (Math Constraint):** Low sleep (< 6h) automatically penalizes baseline DII by `+0.8`. Intense workout lowers glycemic penalty by `-0.5`. | **Adaptive Physiology:** Reflects real biology—the same meal is biochemically more toxic when sleep-deprived and stressed. |
+
+---
+
+### 📈 Group D: Long-Term Trend & Clinical Synthesis
+*Time-series data aggregation and high-fidelity scientific report compilation.*
+
+| Skill ID | API Contract (Schema) | Core Logic & Deterministic Tools | Value for Judges / Impact |
+| :--- | :--- | :--- | :--- |
+| **`SKILL_10_DII_ENGINE`** | **In:**<br/>`{ nutritionMatrix }`<br/><br/>**Out:**<br/>`{ rawDii, classification: enum }` | • Deterministic implementation of the peer-reviewed Dietary Inflammatory Index (DII) methodology via `/scripts/dii_calculator.py`. | **Academic Authority:** Roots the entire scoring system in legitimate epidemiological science rather than arbitrary AI vibes. |
+| **`SKILL_11_TREND_ANALYZER`** | **In:**<br/>`{ historyEntries: array }`<br/><br/>**Out:**<br/>`{ rollingAverageDii, progress: enum }` | • Executes **MCP Tool Call** to **InflameCop Historic DB**.<br/>• Applies a 7-day rolling average to isolate long-term metabolic trends. | **Durable Proprietary Moat:** Shifts UX focus from single meals to longitudinal tracking, building a massive data moat. |
+| **`SKILL_12_CLINICAL_SYNTH`** | **In:**<br/>`{ mealStats, accumulatedDii }`<br/><br/>**Out:**<br/>`{ narrativeMarkdown, citedStudies }` | • **File Message Bus:** Gathers JSON payload URIs on disk to bypass context rot.<br/>• Gemini 3.5 Flash synthesizes medical journal citations (*Nature Medicine*, *AJCN*). | **Unrivaled Professionalism:** Showcases flawless system orchestration while delivering elite, evidence-based value to users. |
+
 ### Data & Knowledge Layer
 
 
