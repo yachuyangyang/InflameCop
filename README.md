@@ -84,8 +84,65 @@ graph TD
 
 
 ## Diagram 2 - MCP
+```mermaid
+graph TD
+    %% Styling
+    classDef orchestrator fill:#4c1d95,stroke:#a78bfa,stroke-width:2px,color:#fff;
+    classDef skill fill:#1e293b,stroke:#f59e0b,stroke-width:1.5px,color:#f8fafc;
+    classDef db fill:#0f172a,stroke:#3b82f6,stroke-width:1.5px,color:#38bdf8;
+    classDef model fill:#064e3b,stroke:#34d399,stroke-width:2px,color:#fff;
 
+    %% Orchestrator
+    subgraph Orchestration_Layer [Orchestration Layer 核心編排層]
+        CR[Context Router / Coordinator <br/> <b>Unified Entrypoint: /api/analyze</b>]:::orchestrator
+    end
 
+    %% Dynamic Skills
+    subgraph Specialist_Skills [Specialist Skills 動態載入技能庫]
+        SG[Skill 1: Security Guard <br/> Input & Format Shield]:::skill
+        VP[Skill 2: Vision Perception <br/> Image Feature Extraction]:::skill
+        CP[Skill 3: Context Penalty <br/> Chrono & Oil Graded Penalty]:::skill
+        KR[Skill 4: Knowledge Retrieval <br/> RAG & Database Mapping]:::skill
+        BA[Skill 5: Biomarker Synthesis <br/> Clinical Logic & Body State]:::skill
+    end
+
+    %% Model Pool
+    subgraph Model_Runtime [Google GenAI LLM Runtime Engine]
+        GM35[Gemini 3.5 Flash <br/> <b>Primary sweet spot</b>]:::model
+        GFL[Gemini Flash Latest <br/> <i>Fallback 1</i>]:::model
+        GM31[Gemini 3.1 Flash-Lite <br/> <i>Fallback 2</i>]:::model
+        G25F[Gemini 2.5 Flash <br/> <i>Fallback 3</i>]:::model
+        G25P[Gemini 2.5 Pro <br/> <i>Deep Reasoning Fallback</i>]:::model
+    end
+
+    %% Databases
+    subgraph Data_Integration [Data & Knowledge Integration Layer]
+        MS[Mount Sinai AGE DB <br/> <i>Advanced Glycation End-products</i>]:::db
+        WHO[WHO Chronic Disease Index <br/> <i>Systemic Inflammation Factors</i>]:::db
+        UDB[User History Log DB <br/> <i>Temporal Trajectory</i>]:::db
+    end
+
+    %% Connections
+    User([User Food Photo & Biometrics]) -->|HTTP POST| CR
+    CR -->|1. Dynamically Load| SG
+    CR -->|2. Dynamically Load| VP
+    CR -->|3. Dynamically Load| CP
+    CR -->|4. Dynamically Load| KR
+    CR -->|5. Dynamically Load| BA
+    
+    %% Skills requesting database / facts
+    KR -.->|Query| MS
+    KR -.->|Query| WHO
+    BA -.->|Query| UDB
+
+    %% Synthesis to LLM
+    SG & VP & CP & KR & BA -->|Single Consolidated Prompt Context| GM35
+    GM35 -.->|Failover| GFL -.->|Failover| GM31 -.->|Failover| G25F -.->|Failover| G25P
+    
+    %% Return
+    GM35 -->|Deterministic JSON Output| CR
+    CR -->|Synthesized Interactive UI| User
+```
 ---
 # 4. The Build 
 ## 🛠️ Tech Stack
