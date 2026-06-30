@@ -211,7 +211,132 @@ By executing 12 highly codified clinical and biochemical skills as isolated sema
 
 ### Data & Knowledge Layer
 
+## MCP Architecture
+To guarantee strict type safety and eliminate systemic context rot, InflameCop rejects the fragile anti-pattern of hardcoded point-to-point APIs or chaotic, unconstrained single-massive prompts. 
 
+Instead, the entire pipeline is consolidated into a **Single, Unified InflameCop MCP Server**. The central LLM acts purely as a decoupled runtime client (Context Router). It discovers and invokes the 12 specialized skills using three standardized architectural primitives defined by the Model Context Protocol (MCP): **Tools** (for deterministic computations), **Resources** (for stateful databases), and **Prompts** (for narrative synthesis).
+
+### 1. MCP Interoperability Architecture Flow Diagram
+
+```mermaid
+graph TD
+    %% 全域字體清晰度與圓角微調
+    classDef component fill:#ffffff,stroke:#0f172a,stroke-width:2.5px,font-weight:bold,color:#0f172a,font-size:15px;
+    classDef protocol fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,font-weight:bold,color:#0369a1,font-size:15px;
+    classDef skill fill:#ffffff,stroke:#10b981,stroke-width:1.5px,color:#065f46,font-size:14px;
+    classDef promptSkill fill:#f5f3ff,stroke:#7c3aed,stroke-width:2px,color:#4c1d95,font-weight:bold,font-size:14px;
+    classDef db fill:#ffffff,stroke:#f59e0b,stroke-width:1.5px,color:#92400e,font-size:14px;
+
+    %% ==========================================
+    %% 1. ORCHESTRATION LAYER (置中居頂)
+    %% ==========================================
+    subgraph Orchestration ["1. Orchestration & Routing Layer (MCP Client)"]
+        direction LR
+        Input["📥 User Uploads Image + Tags"]:::component --> Router["🧠 Context Router (Coordinator)"]:::component
+        Router <--> LLM["⚡ Gemini 3.5 Flash Engine"]:::component
+    end
+
+    %% ==========================================
+    %% 2. MCP INTEROPERABILITY BRIDGE (中間樞紐)
+    %% ==========================================
+    subgraph MCP_Bridge ["2. Model Context Protocol (MCP) Unified Interface Implementation"]
+        direction LR
+        JSONRPC["🔌 Unified JSON-RPC 2.0 Server Gateway"]:::protocol
+    end
+
+    Router --> |"Protocol Session"| JSONRPC
+
+    %% ==========================================
+    %% 3. REFACTORING PRODUCTION BACKEND (橫向緊湊化排版)
+    %% ==========================================
+    subgraph MasterEngine ["🛠️ Master Ingestion Engine: /api/analyze"]
+        direction LR
+        
+        subgraph GroupA_Core ["🧱 Core Defense & Parsing"]
+            direction TB
+            S1["🔍 Skill 1: Image Guard<br>(MCP Tool)"]:::skill
+            S2["🍳 Skill 2: Cook Classifier<br>(MCP Tool)"]:::skill
+            S3["👮 Skill 3: Cop Verdict<br>(MCP Prompt Template)"]:::promptSkill
+        end
+
+        subgraph GroupB_Nutri ["🧪 Nutrition & Toxicology"]
+            direction TB
+            S4["🌿 Skill 4: Micronutrient Est"]:::skill
+            S5["🔥 Skill 5: AGEs Detector"]:::skill
+            S6["🫒 Skill 6: Seed Oil Analyst"]:::skill
+        end
+
+        subgraph GroupC_Physio ["🧘 Physiological Alignment"]
+            direction TB
+            S7["🧘 Skill 7: Gut Shield"]:::skill
+            S8["🍱 Skill 8: Traits Context"]:::skill
+            S9["💪 Skill 9: Biometric Adjust"]:::skill
+        end
+    end
+    style MasterEngine fill:#faf5ff,stroke:#6366f1,stroke-width:2px
+
+    subgraph GroupD ["📈 Group D: Long-Term Trend & Clinical Synthesis (Mixed)"]
+        direction TB
+        S10["📊 Skill 10: DII Engine<br>(MCP Tool)"]:::skill
+        S11["✍️ Skill 11: Trend Analyzer<br>(MCP Tool)"]:::skill
+        S12["🔮 Skill 12: Clinical Synth<br>(MCP Prompt Template)"]:::promptSkill
+    end
+
+    subgraph Data_Knowledge ["📂 Dynamic Knowledge Layer (MCP Resource Servers)"]
+        direction TB
+        DB1["📁 Session Metadata"]:::db
+        DB2["📚 /api/mcp/ingredient_inflammation_db"]:::db
+        DB3["💾 User History DB"]:::db
+        DB1 ~~~ DB2 ~~~ DB3
+    end
+
+    %% 完美的網格對齊（讓 GroupD 與 Data_Knowledge 並排，消除空洞）
+    GroupD ~~~ Data_Knowledge
+
+    %% 精準分流線條
+    JSONRPC --> |"Executes Core Pipeline"| MasterEngine
+    JSONRPC --> |"Dispatches Analytical Engine"| S10
+    JSONRPC --> |"Exposes URIs"| Data_Knowledge
+
+    %% ==========================================
+    %% PRODUCTION DATA FLOW ENHANCEMENTS (整理後的線條)
+    %% ==========================================
+    DB3 --> |"Feeds 7-Day Chrono Data"| S11
+    MasterEngine --> |"Pipelines Meal Payload"| S10
+    S10 --> S11 --> S12
+
+    %% ==========================================
+    %% 4. OUTPUT
+    %% ==========================================
+    Output["🎯 Final Synthesized Clinical Report & Witty Verdict (Output)"]:::component
+    GroupA_Core --> Output
+    S12 --> Output
+    Data_Knowledge -.-> Output
+```
+
+### 🔌 2. MCP Core Architectural Mapping
+
+To achieve high-performance interoperability, the system is designed strictly around the Model Context Protocol (MCP) standard specification, mapping all core components into three native MCP constructs:
+
+#### 🧱 A. MCP Tools Registration (Specialist Skills Layer)
+* **Native Tool Exposure:** The 12 Specialist Skills are exposed to the Context Router (MCP Client) as native, schema-validated tools.
+* **Protocol Interface:** Implements **`tools/list`** to announce available skills and **`tools/call`** to execute them deterministically.
+* **Isolation & Modularity:** Each skill runs as a decoupled module inside the unified MCP Server container. 
+* **Defensive Engineering:** The Context Router invokes skills using strict JSON schemas (verifying `imageUrl`, `user_biometrics`, and `cooking_methods`), preventing prompt injection and enforcing mathematical determinism.
+
+#### 📂 B. MCP Resources Registration (Data & Knowledge Layer)
+* **Decoupled Context Access:** Datasets providing essential backdrop context are served directly to the orchestrator via standard URI-based resource schemes, eliminating static prompt memory bloat.
+* **Protocol Interface:** Implements **`resources/list`** and **`resources/read`** with strict Content-Type mapping.
+* **Standard Resource URI Schemas:**
+  * `dietary://history/user_id`: Maps to the **User History DB** (enabling Skill 11's time-series rolling calculations).
+  * `clinical://guidelines/who`: Maps to **WHO, USDA, & PubMed guidelines** (enabling Skill 12 to append peer-reviewed citations).
+  * `session://mount`: Contains the active session metadata and current meal assessment state.
+
+#### ✍️ C. MCP Prompts Templates (System Integration)
+* **Standardized Generation Templates:** Pre-structured clinical reasoning flows and behavioral personality profiles are registered as decoupled system templates.
+* **Protocol Interface:** Implements **`prompts/list`** and **`prompts/get`** to dynamically hydrate runtime contexts.
+* **Dynamic Generation Orchestration:** The Coordinator Agent pulls the `witty-cop-verdict` template (Skill 3) or the `clinical-synthesis-narrative` template (Skill 12) on demand, forcing the LLM client to format complex data payloads into the final clinical output without semantic drift.
+  
 ## Diagram 1 - 4 layers structure diagram
 ```mermaid
 graph TD
@@ -268,6 +393,94 @@ graph TD
 
 
 ## Diagram 2 - MCP
+
+```mermaid
+graph TD
+    %% Styling Definitions
+    classDef orchestrator fill:#1e1e2e,stroke:#cba6f7,stroke-width:2px,color:#cdd6f4;
+    classDef protocol fill:#313244,stroke:#89b4fa,stroke-width:2px,color:#cdd6f4,stroke-dasharray: 5 5;
+    classDef skillGroup fill:#181825,stroke:#45475a,stroke-width:1px,color:#cdd6f4;
+    classDef skill fill:#1e1e2e,stroke:#a6e3a1,stroke-width:1.5px,color:#cdd6f4;
+    classDef dataStore fill:#1e1e2e,stroke:#f38ba8,stroke-width:1.5px,color:#cdd6f4;
+
+    %% --- ORCHESTRATION LAYER ---
+    subgraph ORCH ["1. ORCHESTRATION LAYER (Client)"]
+        direction TB
+        IMG["📷 User Uploads Meal Image"] --> CR["🧠 Context Router / Coordinator Agent"]
+        CR <--> LLM["⚡ Primary: Gemini 3.5 Flash<br>🔄 Fallback: Low-Latency Model Pool"]
+    end
+    class ORCH orchestrator;
+
+    %% --- PROTOCOL INTEROP LAYER ---
+    subgraph PROTO ["2. MCP INTEROPERABILITY FRAMEWORK"]
+        direction LR
+        JSONRPC["🔌 Standard MCP Host Connection<br>JSON-RPC over stdio / EventSource"]
+    end
+    class PROTO protocol;
+    CR <--> JSONRPC
+
+    %% --- SPECIALIST SKILLS LAYER (MCP SERVER) ---
+    subgraph SKILLS ["3. SPECIALIST SKILLS LAYER (Unified MCP Server)"]
+        direction TB
+
+        %% Sub-group A
+        subgraph GroupA ["A. Core Defense & Parsing (Tools)"]
+            direction TB
+            S1["🔍 S1: Image Content Guard<br>tool://image_content_guard"]:::skill
+            S2["🍳 S2: Kitchen Classifier<br>tool://kitchen_classifier"]:::skill
+            S3["🛡️ S3: Witty Cop Verdict<br>tool://cop_verdict_engine"]:::skill
+            S1 ~~~ S2 ~~~ S3
+        end
+        style GroupA fill:#11111b,stroke:#fab387,stroke-width:1.5px;
+
+        %% Sub-group B
+        subgraph GroupB ["B. Nutrition & Toxicology (Tools)"]
+            direction TB
+            S4["🌿 S4: Micronutrient Estimator<br>tool://micronutrient_estimator"]:::skill
+            S5["🔥 S5: AGEs Detector<br>tool://ages_detector"]:::skill
+            S6["🫒 S6: Seed Oil Analyst<br>tool://seed_oil_hazard_analyst"]:::skill
+            S4 ~~~ S5 ~~~ S6
+        end
+        style GroupB fill:#11111b,stroke:#f9e2af,stroke-width:1.5px;
+
+        %% Sub-group C
+        subgraph GroupC ["C. Physiological Alignment (Tools/Resources)"]
+            direction TB
+            S7["🧘 S7: Gut Mucosal Shield<br>tool://gut_mucilage_calculator"]:::skill
+            S8["🍱 S8: User Traits Matcher<br>tool://user_traits_contextualizer"]:::skill
+            S9["💪 S9: Biometric Overlay<br>tool://biometric_adjuster"]:::skill
+            S7 ~~~ S8 ~~~ S9
+        end
+        style GroupC fill:#11111b,stroke:#a6e3a1,stroke-width:1.5px;
+
+        %% Sub-group D
+        subgraph GroupD ["D. Trend & Synthesis (Tools/Prompts)"]
+            direction TB
+            S10["📊 S10: DII Score Engine<br>tool://dii_score_engine"]:::skill
+            S11["✍️ S11: Trend Analyzer<br>tool://historic_trend_analyzer"]:::skill
+            S12["💾 S12: Narrative Synthesizer<br>prompt://clinical_synthesizer"]:::skill
+            S10 ~~~ S11 ~~~ S12
+        end
+        style GroupD fill:#11111b,stroke:#84a0c6,stroke-width:1.5px;
+    end
+    class SKILLS skillGroup;
+    JSONRPC <--> SKILLS
+
+    %% --- DATA & KNOWLEDGE LAYER ---
+    subgraph DATA ["4. DATA & KNOWLEDGE LAYER (MCP Resources)"]
+        direction LR
+        DB_BIOMETRICS[("👤 Biometrics DB<br>resource://user/biometrics")]:::dataStore
+        DB_HISTORY[("📝 Meal History Log<br>resource://meal/history")]:::dataStore
+        DB_CLINICAL[("📖 Clinical Guidelines<br>resource://clinical/dii_standards")]:::dataStore
+    end
+    style DATA fill:#1e1e2e,stroke:#f38ba8,stroke-width:1.5px;
+
+    %% Mapping database to server context
+    SKILLS <--> DATA
+    
+    %% Final Output Flow
+    GroupD --> OUTPUT["🎯 Final Scientific Narrative & Interventions Output"]
+```
 
 ```mermaid
 flowchart TD
