@@ -20,10 +20,22 @@
 * **The Dietary Triggers**: **70%–80%** of these conditions are diet-driven. Modern restaurant dining exposes consumers to a toxic **20:1 Omega-6 ratio** (via cheap seed oils) and a **2,200% surge in Advanced Glycation End-products (AGEs)** from high-temperature frying, which actively shuts down cellular energy (mitochondria).
 * **The Legacy Blindspot**: In a $4.3T wellness market, 100% of mass-market nutrition apps are completely blind to these molecular triggers. They force users into tedious calorie-counting while letting hidden inflammatory damage slip through.
 ---
-# 3. Solutions & Why Agents
-## Solutions
-## Why Agents?
-## Key Features
+# 3. Why Agents & Solutions
+
+
+
+🎯 Consumer Pain Points vs. Agentic Solutions
+
+| No | Core Agent Trait | Consumer Pain Point | InflameCop Product Feature |
+| :--- | :--- | :--- | :--- |
+| 1 | **Domain Specialization**<br/><br/>Isolated field experts over a single generic LLM. | **Invisible Toxins**<br/><br/>Hidden molecular triggers (AGEs, Omega-6). | **Culinary Feature Vector Extraction**<br/><br/>Vision Perception Agent converts raw pixels into structured ingredient vectors. |
+| 2 | **Parallel Processing**<br/><br/>Concurrent execution cuts audit time to seconds. | **Monolithic Delay**<br/><br/>Slow sequential data processing destroys UX. | **Asynchronous Multi-Agent Ingestion**<br/><br/>Security, Vision, and Context fields process concurrently at user entry. |
+| 3 | **Transparency & Explainability**<br/><br/>Visible, traceable routing with confidence logic. | **AI Black Box**<br/><br/>Users distrust unverified, hallucinated advice. | **Multi-Signal Diagnostic Auditing**<br/><br/>Every metric cites exact contributing agents, lifestyle parameters, and DII lookup scores. |
+| 4 | **Contextual Modularity**<br/><br/>Independent, decoupled operational frameworks. | **Rigid Nutrition Tracking**<br/><br/>Static apps ignore lifestyle/chrono variables. | **Dynamic Context Modifier**<br/><br/>Context Penalty Agent runs custom behavioral scoring without resetting core architecture. |
+| 5 | **A2A Protocol Standards**<br/><br/>Loosely coupled, message-based standard routing. | **Fragile Ecosystem**<br/><br/>Point-to-point data connections crash under load. | **Unified MCP Routing Gateway**<br/><br/>Knowledge Retrieval Agent standardizes database interop to O(N+M) ports. |
+| 6 | **Persona Personalization**<br/><br/>Behavioral customization over clinical detachment. | **User Disengagement**<br/><br/>Boring data dumps lead to 2-week dropouts. | **Empathetic Companion Interface**<br/><br/>Biomarker Analyzer Agent outputs complex path analysis using an encouraging "Health Bestie" tone. |
+
+
 
 ---
 # 4. Architecture
