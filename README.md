@@ -130,7 +130,7 @@ flowchart TD
 - Coordinator Agent: Processes the raw user upload through the Context Router, which coordinates processing by utilizing the Resilient Model Fallback Pool to guarantee zero downtime and maximum reliability.
 ### Secialist Skills Layer
 #### Secialist Skills List
-InflameCop implements a production-grade Agent Skills architecture. Instead of a fragile monolithic prompt, the system utilizes **Progressive Disclosure** to dynamically load 12 codified skills on demand, reducing active context by 98% and strictly enforcing deterministic data boundaries.
+InflameCop implements a production-grade Agent Skills architecture designed to mitigate **Context Rot** and eliminate the attention dilution inherent in traditional LLM pipelines. Instead of relying on a fragile, single monolithic prompt—which frequently triggers **stochastic hallucinations** and cost overruns—the system utilizes **Progressive Disclosure** via a centralized Context Router. 
 
 🧱 Group A: Core Defense & Environmental Parsing
 - Skill 1 (Image Content Guard): Filters out non-food images at the gateway to prevent system pollution and conserve token budgets.
@@ -153,6 +153,7 @@ InflameCop implements a production-grade Agent Skills architecture. Instead of a
 - Skill 12 (Clinical Synthesizer): Aggregates multi-skill outputs via a File Message Bus, synthesizing findings with real medical citations.
 
 #### Specialist Skills Registry
+By executing 12 highly codified clinical and biochemical skills as isolated semantic APIs, InflameCop dynamically loads prompt fragments and data structures on demand. This runtime orchestration architecture achieves up to a **98% reduction in active context windows** and strictly enforces **deterministic data boundaries** across all tool, database, and inference layers.
 
 ##### 🧱 Group A: Core Defense & Environmental Parsing
 *Initial gatekeeping, input validation, and gamified UX rendering.*
