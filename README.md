@@ -128,7 +128,9 @@ flowchart TD
 ## Agents/Skills Specification
 ### Orchestration Layer
 ### Secialist Skills Layer
-#### Agent Skills List
+#### Secialist Skills List
+InflameCop implements a production-grade Agent Skills architecture. Instead of a fragile monolithic prompt, the system utilizes **Progressive Disclosure** to dynamically load 12 codified skills on demand, reducing active context by 98% and strictly enforcing deterministic data boundaries.
+
 🧱 Group A: Core Defense & Environmental Parsing
 - Skill 1 (Image Content Guard): Filters out non-food images at the gateway to prevent system pollution and conserve token budgets.
 - Skill 2 (Cook Classifier): Detects plating cues to differentiate home-cooked meals from hidden restaurant inflammatory oils.
@@ -149,15 +151,12 @@ flowchart TD
 - Skill 11 (Historic Trend Analyzer): Triggers an MCP database call to track 7-day rolling averages, constructing a longitudinal data moat.
 - Skill 12 (Clinical Synthesizer): Aggregates multi-skill outputs via a File Message Bus, synthesizing findings with real medical citations.
 
-#### Agent Skills List
-## 🛠️ Dynamic Specialist Skills Registry
+#### Specialist Skills Registry
 
-InflameCop implements a production-grade Agent Skills architecture. Instead of a fragile monolithic prompt, the system utilizes **Progressive Disclosure** to dynamically load 12 codified skills on demand, reducing active context by 98% and strictly enforcing deterministic data boundaries.
-
-### 🧱 Group A: Core Defense & Environmental Parsing
+##### 🧱 Group A: Core Defense & Environmental Parsing
 *Initial gatekeeping, input validation, and gamified UX rendering.*
 
-| Skill ID | API Contract (Schema) | Core Logic & Deterministic Tools | Value for Judges / Impact |
+| Skill ID | API Contract (Schema) | Core Logic & Deterministic Tools | Value / Impact |
 | :--- | :--- | :--- | :--- |
 | **`SKILL_01_IMAGE_GUARD`** | **In:**<br/>`rawImageBase64`<br/><br/>**Out:**<br/>`{ isValidFood: bool, score: float }` | • Low-latency object detection (Gemini Vision).<br/>• **Guardrail:** Aborts DAG workflow if subject is non-edible or confidence < `0.70`. | **Extreme Robustness:** Prevents system pollution, API over-billing, and hallucinations right at the gateway. |
 | **`SKILL_02_COOK_CLASSIFIER`** | **In:**<br/>`{ ingredients, platingCues }`<br/><br/>**Out:**<br/>`{ context: enum, oilMultiplier: float }` | • Parses visual presentation cues (paper boxes, slate boards).<br/>• **Calibration:** Sets seed oil factor to `2.5x` for restaurants vs. `1.0x` for home. | **Context-Aware Precision:** Eliminates the "hidden restaurant oil" blindspot of standard diet apps. |
@@ -165,10 +164,10 @@ InflameCop implements a production-grade Agent Skills architecture. Instead of a
 
 ---
 
-### 🧪 Group B: Nutrition & Biochemical Toxicology
+##### 🧪 Group B: Nutrition & Biochemical Toxicology
 *Biochemical profiling and deep inflammatory defense mapping via MCP.*
 
-| Skill ID | API Contract (Schema) | Core Logic & Deterministic Tools | Value for Judges / Impact |
+| Skill ID | API Contract (Schema) | Core Logic & Deterministic Tools | Value / Impact |
 | :--- | :--- | :--- | :--- |
 | **`SKILL_04_MICRONUTRIENT_EST`** | **In:**<br/>`{ ingredients: array }`<br/><br/>**Out:**<br/>`{ vitamins, polyphenols_mg }` | • Cross-references ingredients against **USDA FoodData Central API** and custom phytonutrient asset tables. | **Beyond Macros:** Tracks micronutrient buffers and cellular oxidative stress protectors instead of just calories. |
 | **`SKILL_05_AGE_DETECTOR`** | **In:**<br/>`{ ingredients, cookingMethod }`<br/><br/>**Out:**<br/>`{ ageScore, riskLevel: enum }` | • **Cooking Multiplier:** Boiled = `1.0x`, Deep-Fried = `10.0x`. <br/>• Clinical lookup table measuring glycotoxins (CML). | **True Longevity Science:** Shows how cooking methods dictate food toxicity, anchoring the app in anti-aging science. |
@@ -176,10 +175,10 @@ InflameCop implements a production-grade Agent Skills architecture. Instead of a
 
 ---
 
-### 🧘 Group C: Physiological & Biometric Alignment
+##### 🧘 Group C: Physiological & Biometric Alignment
 *Dynamic inflammatory threshold tuning based on real-time body state.*
 
-| Skill ID | API Contract (Schema) | Core Logic & Deterministic Tools | Value for Judges / Impact |
+| Skill ID | API Contract (Schema) | Core Logic & Deterministic Tools | Value / Impact |
 | :--- | :--- | :--- | :--- |
 | **`SKILL_07_GUT_SHIELD`** | **In:**<br/>`{ ingredients: array }`<br/><br/>**Out:**<br/>`{ mucilageScore: int [0-100] }` | • Detects **"Neba-Neba"** foods (natto, okra, wild yam) and soluble prebiotic fibers.<br/>• Computes gut-lining barrier protection score. | **Holistic Gut Wellness:** Empirically rewards users for eating functional foods that heal the gut mucosa. |
 | **`SKILL_08_USER_TRAITS`** | **In:**<br/>`{ foodItems, userProfileTraits }`<br/><br/>**Out:**<br/>`{ personalizedWarnings: array }` | • Cross-matches lifestyle to food chemistry.<br/>• *Rule example:* Triggers histamine alert if user has sensitivities and food contains "leftovers". | **Hyper-Personalization:** Guarantees that the exact same meal yields completely different risks based on individual traits. |
@@ -187,10 +186,10 @@ InflameCop implements a production-grade Agent Skills architecture. Instead of a
 
 ---
 
-### 📈 Group D: Long-Term Trend & Clinical Synthesis
+##### 📈 Group D: Long-Term Trend & Clinical Synthesis
 *Time-series data aggregation and high-fidelity scientific report compilation.*
 
-| Skill ID | API Contract (Schema) | Core Logic & Deterministic Tools | Value for Judges / Impact |
+| Skill ID | API Contract (Schema) | Core Logic & Deterministic Tools | Value / Impact |
 | :--- | :--- | :--- | :--- |
 | **`SKILL_10_DII_ENGINE`** | **In:**<br/>`{ nutritionMatrix }`<br/><br/>**Out:**<br/>`{ rawDii, classification: enum }` | • Deterministic implementation of the peer-reviewed Dietary Inflammatory Index (DII) methodology via `/scripts/dii_calculator.py`. | **Academic Authority:** Roots the entire scoring system in legitimate epidemiological science rather than arbitrary AI vibes. |
 | **`SKILL_11_TREND_ANALYZER`** | **In:**<br/>`{ historyEntries: array }`<br/><br/>**Out:**<br/>`{ rollingAverageDii, progress: enum }` | • Executes **MCP Tool Call** to **InflameCop Historic DB**.<br/>• Applies a 7-day rolling average to isolate long-term metabolic trends. | **Durable Proprietary Moat:** Shifts UX focus from single meals to longitudinal tracking, building a massive data moat. |
