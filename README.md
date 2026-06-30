@@ -127,6 +127,7 @@ flowchart TD
 ```
 ## Agents/Skills Specification
 ### Orchestration Layer
+- Coordinator Agent: Processes the raw user upload through the Context Router, which coordinates processing by utilizing the Resilient Model Fallback Pool to guarantee zero downtime and maximum reliability.
 ### Secialist Skills Layer
 #### Secialist Skills List
 InflameCop implements a production-grade Agent Skills architecture. Instead of a fragile monolithic prompt, the system utilizes **Progressive Disclosure** to dynamically load 12 codified skills on demand, reducing active context by 98% and strictly enforcing deterministic data boundaries.
