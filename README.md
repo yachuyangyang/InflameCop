@@ -137,7 +137,6 @@ flowchart TD
     %% Output
     DataLayer --> FinalOutput([📋 Output: Dynamic Clinical Report & Witty Chinese Polish Output]):::output
 ```
-## Agents/Skills Specification
 ### Orchestration Layer
 - Coordinator Agent: Processes the raw user upload through the Context Router, which coordinates processing by utilizing the Resilient Model Fallback Pool to guarantee zero downtime and maximum reliability.
 ### Secialist Skills Layer
@@ -216,6 +215,17 @@ By executing 12 highly codified clinical and biochemical skills as isolated sema
 </details>
 
 ### Data & Knowledge Layer
+- 🗄️ Mount Sinai AGE DB (STATIC_INGREDIENTS):
+     - A curated dataset based on clinical studies from the Mount Sinai School of Medicine mapping advanced glycation end-products (AGEs) across food groups.
+- 📚 WHO Chronic Disease Index (& Anti-Aging Literature):
+     - A comprehensive reference engine aligning dietary intake with the World Health Organization (WHO) chronic metabolic disease prevention guidelines and geroscience (anti-aging) literature.
+- 💾 User History Log DB (& Logged Meal History):
+     - A longitudinal time-series database tracking individual scan records, nutrient logs, and biometric traits over time.
+
+
+
+
+
 
 ## MCP Architecture
 To guarantee strict type safety and eliminate systemic context rot, InflameCop rejects the fragile anti-pattern of hardcoded point-to-point APIs or chaotic, unconstrained single-massive prompts. 
