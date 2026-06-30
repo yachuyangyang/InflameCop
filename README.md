@@ -84,6 +84,133 @@ graph TD
 
 
 ## Diagram 2 - MCP
+
+[ USER UPLOADS MEAL IMAGE + DECLARES TRAITS ]
+                                       │
+                                       ▼
+       ┌───────────────────────────────────────────────────────────────┐
+       │     1. UNIVERSAL ORCHESTRATOR & CONTEXT ROUTER AGENT          │
+       │                                                               │
+       │  • Primary: models/gemini-3.5-flash                           │
+       │  • Resilient Model Fallback Pool (Low-Latency Retries):       │
+       │    gemini-flash-latest ➔ gemini-3.1-flash-lite ➔              │
+       │    gemini-2.5-flash ➔ gemini-2.5-pro                          │
+       └───────────────────────────────┬───────────────────────────────┘
+                                       │
+                    Dynamic Evaluation & Condition Matching
+                                       │
+                                       ▼
+       ┌───────────────────────────────────────────────────────────────┐
+       │     2. DYNAMIC SKILL INJECTION GRID (Zero-Latency Context)    │
+       │                                                               │
+       │   [CULINARY & OXIDATIVE SKILLS]    [CHRONO-NUTRITIONAL SKILLS]│
+       │   • Seed Oil Peroxidation Detector • Circadian Sleep Depress  │
+       │   • Deep-Fried AGEs Modulator      • Late-Night Metabolism    │
+       │   • Polyphenol Defense Booster     • Alcohol Recovery Path    │
+       │                                                               │
+       │   [GUT BARRIER & MUCOSAL SKILLS]   [CLINICAL BIOMARKER SKILLS]│
+       │   • Neba-Neba Mucosal Shielding    • Glycemic Peak Regulator  │
+       │   • Histamine Accumulation Tracker • Cortisol-Stress Damper   │
+       │   • Preservative Permeability Rule • Post-Workout Window      │
+       └───────────────────────────────┬───────────────────────────────┘
+                                       │
+                     Fetches Ground Truth Evidence Base
+                                       │
+                                       ▼
+       ┌───────────────────────────────────────────────────────────────┐
+       │     3. MODEL CONTEXT PROTOCOL (MCP) INTEROPERABILITY          │
+       │                                                               │
+       │  • MCP Tool: ingredient_inflammation_db (Low-latency check)   │
+       │  • Ground-Truth Database: STATIC_INGREDIENTS (Curated items)  │
+       └───────────────────────────────┬───────────────────────────────┘
+                                       │
+                Consolidates into Single Structural JSON Output
+                                       │
+                                       ▼
+                    [ POLISHED NATIVE USER REVEAL / VERDICT ]
+
+```mermaid
+graph TD
+    %% User Inputs Layer %%
+    subgraph Inputs ["User Input Signals"]
+        A1["Meal Photo (Image Content)"]
+        A2["User Biometric Tags (Post-Workout, Sleep Deprived, Gut Sensitive, Stress)"]
+        A3["User Meal Traits (Seed Oil, Deep Fried, Polyphenol Rich, Leftovers)"]
+    end
+
+    %% Agent Coordinator Layer %%
+    subgraph CoreAgent ["InflameCop Coordinator (Single-Agent Core)"]
+        B1["Context Router & Orchestrator"]
+        B2["Resilient Model Pool (Dynamic Fallback Loop)"]
+        
+        B1 --> B2
+        B2 --> C1("1. Gemini 3.5 Flash (Primary)")
+        B2 --> C2("2. Gemini Flash Latest (Backup)")
+        B2 --> C3("3. Gemini 3.1 Flash-Lite (Low Latency)")
+        B2 --> C4("4. Gemini 2.5 Flash (Compatibility)")
+        B2 --> C5("5. Gemini 2.5 Pro (Deep Clinical Logic)")
+    end
+
+    Inputs --> B1
+
+    %% Dynamic Skill Dispatcher %%
+    B2 -->|On-Demand Context Injection| D["Dynamic Skill Dispatch Layer"]
+
+    %% Grouped Skills Grid (Top-to-Bottom, Left-to-Right layout) %%
+    subgraph Skills ["Modular Skills (Grouped to prevent infinite horizontal expansion)"]
+        
+        subgraph GroupA ["A. Ingest & Safety Safeguards"]
+            S1["Skill 1: Non-Edible Shield (Is Food Filter)"]
+            S2["Skill 2: Culinary Vision Perception"]
+            S3["Skill 3: Kitchen Context Detector (Home vs Restaurant)"]
+        end
+        
+        subgraph GroupB ["B. Nutrient & Lipid Grading"]
+            S4["Skill 4: Seed Oil & Peroxidation Penalty"]
+            S5["Skill 5: Clean Fats & EVOO Credit Boost"]
+            S6["Skill 6: Biochemical Forensic Analysis (AGEs)"]
+        end
+
+        subgraph GroupC ["C. Chrono-Nutrition & Stress Tuning"]
+            S7["Skill 7: Circadian Sympathetic Relief (Stress)"]
+            S8["Skill 8: Melatonin Syncing (Late Night)"]
+            S9["Skill 9: Golden Recovery Window (Post-Workout)"]
+        end
+
+        subgraph GroupD ["D. Gut Barrier & Witty Output"]
+            S10["Skill 10: Neba-Neba Slimy Gut Shield"]
+            S11["Skill 11: Gut Mucosa Repair (Gut Sensitive)"]
+            S12["Skill 12: Witty Cop Verdict & Native Translation"]
+        end
+    end
+
+    D --> GroupA
+    D --> GroupB
+    D --> GroupC
+    D --> GroupD
+
+    %% Output Synthesis Layer %%
+    subgraph Output ["Anti-Aging Output Payload (Structured JSON)"]
+        E1["Anti-Inflammatory Score (0-100)"]
+        E2["Molecular Forensic Insights (AGEs, Gut Permeability)"]
+        E3["Dual-Language Sharp Police Verdict (English + Witty Traditional Chinese)"]
+    end
+
+    GroupA --> Output
+    GroupB --> Output
+    GroupC --> Output
+    GroupD --> Output
+
+    %% Node Styling for Visual Rhythm %%
+    classDef mainNode fill:#1e293b,stroke:#3b82f6,stroke-width:2px,color:#f8fafc;
+    classDef skillNode fill:#0f172a,stroke:#10b981,stroke-width:1.5px,color:#f1f5f9;
+    classDef modelNode fill:#1e1b4b,stroke:#a855f7,stroke-width:1.5px,color:#f5f3ff;
+    
+    class B1,B2,D,E1,E2,E3 mainNode;
+    class S1,S2,S3,S4,S5,S6,S7,S8,S9,S10,S11,S12 skillNode;
+    class C1,C2,C3,C4,C5 modelNode;
+```
+
 ```mermaid
 
 graph TD
