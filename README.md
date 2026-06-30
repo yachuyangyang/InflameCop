@@ -31,13 +31,13 @@
 
 ```mermaid
 flowchart TD
-    %% Global Light-Themed Styling Config
-    classDef coordinator fill:#f3e8ff,stroke:#7c3aed,stroke-width:2px,color:#4c1d95,font-weight:bold;
-    classDef fallbackBox fill:#eff6ff,stroke:#3b82f6,stroke-width:1px,stroke-dasharray: 4 4,color:#1e40af,font-size:11px;
-    classDef skillGroup fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px,color:#1e293b,font-weight:bold;
-    classDef skill fill:#ffffff,stroke:#64748b,stroke-width:1px,color:#334155,font-size:11px;
-    classDef db fill:#f0fdf4,stroke:#16a34a,stroke-width:1.5px,color:#14532d;
-    classDef output fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#92400e,font-weight:bold;
+    %% Global Light-Themed Styling Config (Font sizes upgraded to 14px/15px)
+    classDef coordinator fill:#f3e8ff,stroke:#7c3aed,stroke-width:2px,color:#4c1d95,font-weight:bold,font-size:15px;
+    classDef fallbackBox fill:#eff6ff,stroke:#3b82f6,stroke-width:1px,stroke-dasharray: 4 4,color:#1e40af,font-size:14px;
+    classDef skillGroup fill:#f8fafc,stroke:#cbd5e1,stroke-width:1.5px,color:#1e293b,font-weight:bold,font-size:14px;
+    classDef skill fill:#ffffff,stroke:#64748b,stroke-width:1px,color:#334155,font-size:14px;
+    classDef db fill:#f0fdf4,stroke:#16a34a,stroke-width:1.5px,color:#14532d,font-size:14px;
+    classDef output fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#92400e,font-weight:bold,font-size:15px;
 
     %% --- USER INPUT TRIGGER ---
     Input([👤 User Uploads Meal Image + User Tags]) --> Coordinator
@@ -55,7 +55,6 @@ flowchart TD
     %% ==========================================
     %% 2. SPECIALIST SKILLS LAYER (Compressed Vertical Space)
     %% ==========================================
-    %% Using compact arrows to tell the engine to bring the layers closer together
     Coordinator --> GroupA
     Coordinator --> GroupB
     Coordinator --> GroupC
