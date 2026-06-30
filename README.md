@@ -126,6 +126,10 @@ flowchart TD
     DataLayer --> FinalOutput([📋 Output: Dynamic Clinical Report & Witty Chinese Polish Output]):::output
 ```
 ## Agents/Skills Specification
+### Orchestration Layer
+### Secialist Skills Layer
+### Data & Knowledge Layer
+
 
 ## Diagram 1 - 4 layers structure diagram
 ```mermaid
