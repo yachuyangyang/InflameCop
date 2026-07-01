@@ -1,12 +1,13 @@
 todo
-- Development Process
-- project structure
+- Development Process v
+- project structure v
 - next steps
-- 課程內容應用對標整理
-    - Technical Evidence Map
-    - Kaggle 5-Day Content Mapping
+- 課程內容應用對標整理 v
+    - Hakathon requirements v
+    - Kaggle 5-Day Content Mapping v
       
-
+-ref v
+-key features
 
 
 
@@ -28,29 +29,38 @@ todo
 
 ---
 
-## 🧾 Technical Evidence Map
+## ✅ Hackathon Requirements Coverage
 
-> **Reviewer Tip:** The fastest way to inspect InflameCop's agent architecture is to start with **`server.ts`** (Coordinator), then browse the **`skills/`** directory, where each Agent Skill is packaged independently following the **Progressive Disclosure** pattern.
+> **Requirement:** Demonstrate at least **3 key concepts** from the **Google AI Agents Intensive** course.
 
-| Key Concept | Where to Verify | What to Look For |
-|:------------|:----------------|:-----------------|
-| **🤖 Agent / Multi-Agent System** | `server.ts` | Coordinator Agent performs context-aware routing and dynamically assembles the required Agent Skills based on meal type, cooking context, and user physiological traits. |
-| **🧩 Agent Skills** | `skills/skill-01-*` → `skills/skill-12-*` | Each Agent Skill is packaged independently with its own `SKILL.md`, containing metadata, trigger conditions, operational instructions, and domain-specific reasoning rules. |
-| **⚡ Progressive Disclosure** | `server.ts` | Only the selected `SKILL.md` files are loaded at runtime. The system avoids injecting all 12 skills into the prompt, reducing context size, token usage, and inference latency. |
-| **📚 MCP-compatible Grounding Layer** | `server.ts`<br>`src/presets.ts` | Implements deterministic local tool endpoints inspired by MCP principles. Structured ingredient and clinical reference data are retrieved through local grounding instead of free-form LLM generation, significantly reducing ingredient hallucinations. |
-| **🛡️ Security & Guardrails** | `server.ts`<br>`skills/skill-01-image-guard/SKILL.md` | Multi-layer safety pipeline including image validation, non-food rejection, calorie/macronutrient blocking, and evidence-based functional medicine redirection. |
-| **🧪 Evaluation Framework** | `src/presets.ts`<br>`README.md` (Evaluation Section) | Golden clinical scenarios, routing validation, factual grounding verification, adversarial safety tests, and runtime latency benchmarks used to evaluate the complete agent pipeline. |
-| **🚀 Deployability & Reproducibility** | `README.md`<br>`package.json`<br>`.env.example` | Complete local setup guide, environment configuration, build commands, and reproducible execution workflow for reviewers. |
+**Coverage:** **6 / 6 concepts** *(exceeds requirement)*
+
+| # | Key Concept | InflameCop Implementation | Evidence | ✓ |
+|:-:|-------------|---------------------------|----------|:-:|
+| **1** | **Agent / Multi-Agent System (ADK)** | Coordinator Agent orchestrates **12 specialized Agent Skills** through Progressive Disclosure and dynamic routing. | Architecture + `src/agent/` | ✅ |
+| **2** | **MCP Server** | Local MCP server provides deterministic ingredient retrieval, clinical evidence lookup, and historical trend analysis. | `src/mcp/` | ✅ |
+| **3** | **Agent Skills** | **12 reusable Agent Skills** encapsulating prompts, guardrails, MCP tools, and structured outputs. | `skills/` | ✅ |
+| **4** | **Security Features** | Image validation, hallucination prevention, calorie leakage protection, and Responsible AI guardrails. | Evaluation + `src/security/` | ✅ |
+| **5** | **Deployability** | Production-ready web application with streaming responses, structured JSON outputs, and cloud deployment. | Live Demo | ✅ |
+| **6** | **Antigravity** | AI-assisted development workflow powered by Google Antigravity CLI for rapid prototyping and iteration. | Demo Video | ✅ |
 
 
-### Repository Navigation
 
-For reviewers interested in the core agent implementation, the recommended reading order is:
+## 🎓 Google AI Agents Intensive Course Mapping
 
-1. `server.ts` — Coordinator Agent & Skill Routing
-2. `skills/` — 12 Dynamic Agent Skills (`SKILL.md`)
-3. `src/presets.ts` — Evaluation Scenarios & Golden Test Cases
-4. `README.md` — Architecture, Evaluation Methodology, and Performance Results
+InflameCop intentionally applies the engineering principles introduced throughout Google's **5-Day AI Agents Intensive Course**, translating them into a production-oriented AI Agent system.
+
+| Day | Whitepaper Theme | Evidence in InflameCop |
+|:---:|------------------|------------------------|
+| **1** | 🤖 **Vibe Coding** | ✅ Google AI Studio<br>✅ Natural-language programming<br>✅ AI-assisted development |
+| **2** | 🔧 **Tools & MCP** | ✅ MCP-compatible tools<br>✅ Deterministic grounding<br>✅ Local tool integration |
+| **3** | 🧩 **Agent Skills** | ✅ 12 Agent Skills<br>✅ Progressive Disclosure<br>✅ Dynamic skill loading |
+| **4** | 🛡️ **Responsible AI** | ✅ Input guardrails<br>✅ Factual grounding<br>✅ Agent evaluation |
+| **5** | 📐 **Spec-Driven Development** | ✅ AGENTS.md<br>✅ PRODUCT_SPEC.md<br>✅ ARCHITECTURE_SPEC.md<br>✅ EVALUATION_SPEC.md |
+
+> **Coverage:** ✅ Vibe Coding • ✅ MCP • ✅ Agent Skills • ✅ Progressive Disclosure • ✅ Responsible AI • ✅ Evaluation • ✅ Spec-Driven Development
+
+
 
 ## 📁 Project Structure
 
@@ -142,7 +152,46 @@ The InflameCop journey began on **June 18, 2026**, when the initial product conc
 | Final Polish | UI refinement, GitHub, submission materials | 12 h |
 
 
+## 🚀 Future Roadmap
 
+| Category | Next Step | Expected Impact |
+|:---------|:----------|:----------------|
+| 🎮 **Product Experience** | Gamified health challenges, streaks, achievements, and a cleaner mobile-first UI | Increase long-term engagement and healthy habit formation |
+| 🤖 **Agent Intelligence** | Self-improving Agent Skills, long-term memory, and explainable reasoning traces | More personalized, adaptive, and transparent recommendations |
+| 🛡️ **Security & Reliability** | AI Code Review Skill, prompt injection defense, automated regression tests, and CI evaluation pipeline | Improve security, maintainability, and production readiness |
+| 🌐 **Production Ecosystem** | Cloud user profiles, wearable integrations, and additional MCP knowledge connectors | Expand the platform into a scalable, real-world health assistant |
+
+## 📚 References
+
+InflameCop's problem framing, clinical logic, and agent architecture were informed by the following public health, nutrition science, and AI engineering references.
+
+1. **Chronic Inflammation & Disease Burden**  
+   Furman, D., Campisi, J., Verdin, E., et al. (2019). *Chronic inflammation in the etiology of disease across the life span.* Nature Medicine, 25(12), 1822–1832.  
+   https://doi.org/10.1038/s41591-019-0675-0
+
+2. **Noncommunicable Diseases & Lifestyle Risk Factors**  
+   World Health Organization (WHO). *Noncommunicable diseases — Fact sheet.*  
+   https://www.who.int/news-room/fact-sheets/detail/noncommunicable-diseases
+
+3. **Global Dietary Risk & Mortality**  
+   GBD 2017 Diet Collaborators. (2019). *Health effects of dietary risks in 195 countries, 1990–2017: a systematic analysis for the Global Burden of Disease Study 2017.* The Lancet, 393(10184), 1958–1972.  
+   https://doi.org/10.1016/S0140-6736(19)30041-8
+
+4. **Dietary Inflammatory Index (DII)**  
+   Shivappa, N., Steck, S. E., Hurley, T. G., Hussey, J. R., & Hébert, J. R. (2014). *Designing and developing a literature-derived, population-based dietary inflammatory index.* Public Health Nutrition, 17(8), 1689–1696.  
+   https://doi.org/10.1017/S1368980013002115
+
+5. **Advanced Glycation End-products (AGEs) Food Database**  
+   Uribarri, J., Woodruff, S., Goodman, S., et al. (2010). *Advanced glycation end products in foods and a practical guide to their reduction in the diet.* Journal of the American Dietetic Association, 110(6), 911–916.e12.  
+   https://doi.org/10.1016/j.jada.2010.03.018
+
+6. **NOVA Food Classification & Ultra-Processed Foods**  
+   Monteiro, C. A., Cannon, G., Levy, R. B., et al. (2019). *Ultra-processed foods: what they are and how to identify them.* Public Health Nutrition, 22(5), 936–941.  
+   https://doi.org/10.1017/S1368980018003762
+
+7. **Google AI Agents Intensive Course**  
+   Google & Kaggle. *5-Day AI Agents: Intensive Vibe Coding Course with Google.*  
+   https://www.kaggle.com/learn-guide/5-day-agents-vibecoding
 ---
 
 # 1. Executive Summary
