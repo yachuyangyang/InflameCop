@@ -1,3 +1,150 @@
+todo
+- Development Process
+- project structure
+- next steps
+- 課程內容應用對標整理
+    - Technical Evidence Map
+    - Kaggle 5-Day Content Mapping
+      
+
+
+
+
+## Development Process
+
+---
+# n. Kaggle 5 Days Topics Coverage
+
+---
+# n. Next Steps
+
+---
+# n. Citation
+
+---
+# n. Q & A
+---
+# Key Features
+
+---
+
+## 🧾 Technical Evidence Map
+
+> **Reviewer Tip:** The fastest way to inspect InflameCop's agent architecture is to start with **`server.ts`** (Coordinator), then browse the **`skills/`** directory, where each Agent Skill is packaged independently following the **Progressive Disclosure** pattern.
+
+| Key Concept | Where to Verify | What to Look For |
+|:------------|:----------------|:-----------------|
+| **🤖 Agent / Multi-Agent System** | `server.ts` | Coordinator Agent performs context-aware routing and dynamically assembles the required Agent Skills based on meal type, cooking context, and user physiological traits. |
+| **🧩 Agent Skills** | `skills/skill-01-*` → `skills/skill-12-*` | Each Agent Skill is packaged independently with its own `SKILL.md`, containing metadata, trigger conditions, operational instructions, and domain-specific reasoning rules. |
+| **⚡ Progressive Disclosure** | `server.ts` | Only the selected `SKILL.md` files are loaded at runtime. The system avoids injecting all 12 skills into the prompt, reducing context size, token usage, and inference latency. |
+| **📚 MCP-compatible Grounding Layer** | `server.ts`<br>`src/presets.ts` | Implements deterministic local tool endpoints inspired by MCP principles. Structured ingredient and clinical reference data are retrieved through local grounding instead of free-form LLM generation, significantly reducing ingredient hallucinations. |
+| **🛡️ Security & Guardrails** | `server.ts`<br>`skills/skill-01-image-guard/SKILL.md` | Multi-layer safety pipeline including image validation, non-food rejection, calorie/macronutrient blocking, and evidence-based functional medicine redirection. |
+| **🧪 Evaluation Framework** | `src/presets.ts`<br>`README.md` (Evaluation Section) | Golden clinical scenarios, routing validation, factual grounding verification, adversarial safety tests, and runtime latency benchmarks used to evaluate the complete agent pipeline. |
+| **🚀 Deployability & Reproducibility** | `README.md`<br>`package.json`<br>`.env.example` | Complete local setup guide, environment configuration, build commands, and reproducible execution workflow for reviewers. |
+
+
+### Repository Navigation
+
+For reviewers interested in the core agent implementation, the recommended reading order is:
+
+1. `server.ts` — Coordinator Agent & Skill Routing
+2. `skills/` — 12 Dynamic Agent Skills (`SKILL.md`)
+3. `src/presets.ts` — Evaluation Scenarios & Golden Test Cases
+4. `README.md` — Architecture, Evaluation Methodology, and Performance Results
+
+## 📁 Project Structure
+
+```text
+inflame-cop/
+├── server.ts                    # Full-stack Express server (Coordinator & API routes)
+├── AGENTS.md                    # Instructions and constraints for AI coding agents
+├── package.json                 # Project dependencies and build scripts
+├── .env.example                 # Environment variable template
+│
+├── specs/                       # Source of truth (Spec-Driven Development)
+│   ├── PRODUCT_SPEC.md
+│   ├── ARCHITECTURE_SPEC.md
+│   └── EVALUATION_SPEC.md
+│
+├── skills/                      # Agent Skills (Progressive Disclosure)
+│   ├── skill-01-image-guard/
+│   ├── skill-02-cook-classifier/
+│   ├── skill-03-cop-verdict/
+│   ├── skill-04-micronutrient/
+│   ├── skill-05-age-detector/
+│   ├── skill-06-seed-oil-analyst/
+│   ├── skill-07-gut-mucosal-shield/
+│   ├── skill-08-user-traits/
+│   ├── skill-09-biometric/
+│   ├── skill-10-dii-engine/
+│   ├── skill-11-historic-trend/
+│   └── skill-12-clinical-report/
+│
+├── src/
+│   ├── App.tsx
+│   ├── main.tsx
+│   ├── presets.ts
+│   ├── types.ts
+│   └── components/
+│       ├── ActiveVerdictView.tsx
+│       ├── HistoryLedger.tsx
+│       └── MetricRadarChart.tsx
+│
+└── README.md
+```
+
+### Key Directories
+
+| Directory | Purpose |
+|-----------|---------|
+| `/specs` | Source of truth following Spec-Driven Development |
+| `/skills` | 12 dynamically loaded Agent Skills following the Agent Skills Standard |
+| `/src` | React frontend and UI components |
+| `server.ts` | Coordinator Agent, routing, MCP-compatible tools, and Gemini orchestration |
+| `AGENTS.md` | Instructions for AI coding agents working on this repository |
+---
+
+## 📅 Development Timeline
+
+# 3. Development Timeline (Horizontal Flow)
+
+The InflameCop journey began on **June 18, 2026**, when the initial product concept was conceived. Over the following weeks, the project evolved through iterative architecture design, agent refinement, evaluation engineering, and production hardening before the final submission on **July 6, 2026**.
+
+```text
+┌────────────────────────┐     ┌────────────────────────┐     ┌────────────────────────┐
+│   Jun 18 – Jun 22      │     │   Jun 23 – Jun 27      │     │   Jun 28 – Jun 30      │
+├────────────────────────┤     ├────────────────────────┤     ├────────────────────────┤
+│ 💡 Product Discovery   │ ──> │ 🤖 Agent Architecture │ ──>  │ 📚 Technical Hardening │
+│ Product vision &       │     │ Coordinator, 12 Skills │     │ Specs, README,         │
+│ functional medicine    │     │ Progressive Disclosure │     │ evaluation framework   │
+└────────────────────────┘     └────────────────────────┘     └────────────────────────┘
+                                                                      │
+                                                                      ▼
+                               ┌────────────────────────┐     ┌────────────────────────┐
+                               │    Jul 4 – Jul 6       │ <── │    Jul 1 – Jul 3       │
+                               ├────────────────────────┤     ├────────────────────────┤
+                               │ 🚀 Final Submission    │     │ 🧪 Evaluation & Safety │
+                               │ Demo, polish, build,   │     │ Golden scenarios,      │
+                               │ deployment & packaging │     │ red-team, benchmarks   │
+                               └────────────────────────┘     └────────────────────────┘
+```
+**Development Period:** June 18 – July 6, 2026 (~19 days)
+
+**Estimated Development Effort:** ~72 hours
+
+| Phase | Focus | Effort |
+|:------|:------|-------:|
+| Product Design | Functional medicine research, product vision, user journey | 8 h |
+| Agent Architecture | Coordinator, 12 Agent Skills, Progressive Disclosure | 10 h |
+| Implementation | React UI, Express backend, Gemini integration | 8 h |
+| Evaluation | Golden scenarios, grounding validation, safety testing | 15 h |
+| Documentation | README, SKILL.md, architecture diagrams, specifications | 20 h |
+| Final Polish | UI refinement, GitHub, submission materials | 12 h |
+
+
+
+---
+
 # 1. Executive Summary
 ## Core Concept & Value
 **InflameCop** is a multi-agent system that autonomously audits cellular inflammation risks from food photography by combining multi-modal perception with context-aware functional medicine reasoning.
